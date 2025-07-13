@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Box,
   Flex,
@@ -35,6 +35,8 @@ import {
   FaEnvelope,
   FaCode
 } from 'react-icons/fa';
+import Description from './components/Description';
+import AboutMe from './components/AboutMe';
 
 const MotionBox = motion(Box);
 const MotionFlex = motion(Flex);
@@ -49,12 +51,14 @@ const App = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
   const theme = useTheme();
 
+  const aboutMeRef = useRef(null);
+
   // Colores dinámicos basados en el modo
   const bgColor = useColorModeValue('rgba(255, 255, 255, 0.9)', 'rgba(26, 26, 26, 0.9)');
   const bgColorTransparent = useColorModeValue('transparent', 'transparent');
   const textColor = useColorModeValue('gray.800', 'white');
-  const primaryColor = useColorModeValue('blue.500', 'cyan.400');
-  const secondaryColor = useColorModeValue('red.500', 'red.400');
+  const primaryColor = useColorModeValue('red.500', 'red.400');
+  const secondaryColor = useColorModeValue('gray.500', 'gray.400');
   const drawerBg = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('rgba(0, 0, 0, 0.1)', 'rgba(255, 255, 255, 0.1)');
 
@@ -67,8 +71,18 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToAboutMe = () => {
+    if (aboutMeRef.current) {
+      aboutMeRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
+    }
+  };
+
   const menuItems = [
-    { label: 'Inicio', href: '#inicio' },
+    { label: 'Inicio', href: "#" },
     { label: 'Sobre Mí', href: '#sobre' },
     { label: 'Proyectos', href: '#proyectos' },
     { label: 'Habilidades', href: '#habilidades' },
@@ -182,7 +196,7 @@ const App = () => {
                   <IconButton
                     as={Link}
                     href={social.href}
-                    icon={<Box as={social.icon} />}
+                    icon={<Box as={social.icon} boxSize="24px" />}
                     color={primaryColor}
                     variant="ghost"
                     size="lg"
@@ -284,6 +298,7 @@ const App = () => {
                           transition: 'all 0.3s ease',
                           transform: 'translateX(-50%)',
                         }}
+                        onClick={scrollToAboutMe}
                       >
                         {item.label}
                       </Button>
@@ -314,7 +329,7 @@ const App = () => {
 
                 {/* Social Icons - Desktop */}
                 {!isMobile && (
-                  <HStack spacing={1} ml={2}>
+                  <HStack spacing={5} ml={2}>
                     {socialLinks.map((social, index) => (
                       <MotionBox
                         key={social.label}
@@ -328,7 +343,7 @@ const App = () => {
                           <IconButton
                             as={Link}
                             href={social.href}
-                            icon={<Box as={social.icon} />}
+                            icon={<Box as={social.icon} boxSize="20px" />}
                             color={primaryColor}
                             variant="ghost"
                             size="sm"
@@ -376,6 +391,8 @@ const App = () => {
       {/* Contenido de ejemplo para mostrar el efecto scroll */}
       <Box pt="80px">
         {/* Aquí va el contenido del resto de la página */}
+        <Description refAbout={aboutMeRef} />
+        {/* <AboutMe /> */}
       </Box>
     </Box>
   );
