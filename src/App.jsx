@@ -36,7 +36,7 @@ import {
   FaCode
 } from 'react-icons/fa';
 import Description from './components/Description';
-import AboutMe from './components/AboutMe';
+import ProjectsShowcase from './components/Proyects';
 
 const MotionBox = motion(Box);
 const MotionFlex = motion(Flex);
@@ -52,8 +52,8 @@ const App = () => {
   const theme = useTheme();
 
   const aboutMeRef = useRef(null);
+  const heroRef = useRef(null);
 
-  // Colores dinámicos basados en el modo
   const bgColor = useColorModeValue('rgba(255, 255, 255, 0.9)', 'rgba(26, 26, 26, 0.9)');
   const bgColorTransparent = useColorModeValue('transparent', 'transparent');
   const textColor = useColorModeValue('gray.800', 'white');
@@ -71,22 +71,12 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToAboutMe = () => {
-    if (aboutMeRef.current) {
-      aboutMeRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-
-    }
-  };
-
   const menuItems = [
-    { label: 'Inicio', href: "#" },
-    { label: 'Sobre Mí', href: '#sobre' },
-    { label: 'Proyectos', href: '#proyectos' },
-    { label: 'Habilidades', href: '#habilidades' },
-    { label: 'Contacto', href: '#contacto' },
+    { label: 'Inicio', ref: heroRef },
+    { label: 'Sobre mí', ref: aboutMeRef },
+    { label: 'Proyectos', ref: '#proyectos' },
+    { label: 'Habilidades', ref: aboutMeRef },
+    { label: 'Contacto', ref: '#contacto' },
   ];
 
   const socialLinks = [
@@ -94,6 +84,9 @@ const App = () => {
     { icon: FaLinkedin, href: 'https://www.linkedin.com/in/joaquin-figueroa-284292346/', label: 'LinkedIn' },
     { icon: FaEnvelope, href: 'mailto:figueroaalvarez594@gmail.com', label: 'Email' },
   ];
+
+  const scrollTo = (ref) =>
+    ref?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   const navbarVariants = {
     initial: { y: -100, opacity: 0 },
@@ -272,8 +265,6 @@ const App = () => {
                       transition={{ delay: index * 0.1 }}
                     >
                       <Button
-                        as={Link}
-                        href={item.href}
                         variant="ghost"
                         color={textColor}
                         fontWeight="600"
@@ -298,7 +289,7 @@ const App = () => {
                           transition: 'all 0.3s ease',
                           transform: 'translateX(-50%)',
                         }}
-                        onClick={scrollToAboutMe}
+                        onClick={() => scrollTo(item.ref) }
                       >
                         {item.label}
                       </Button>
@@ -391,8 +382,11 @@ const App = () => {
       {/* Contenido de ejemplo para mostrar el efecto scroll */}
       <Box pt="80px">
         {/* Aquí va el contenido del resto de la página */}
-        <Description refAbout={aboutMeRef} />
-        {/* <AboutMe /> */}
+        <Description
+          refAbout={aboutMeRef}
+          heroRef={heroRef}
+        />
+        <ProjectsShowcase />
       </Box>
     </Box>
   );

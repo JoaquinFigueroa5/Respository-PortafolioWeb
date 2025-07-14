@@ -7,12 +7,9 @@ const MotionBox = motion(Box);
 const MotionText = motion(Text);
 const MotionHeading = motion(Heading);
 
-const Description = ({refAbout}) => {
+const Description = ({ refAbout, heroRef }) => {
     const [windowHeight, setWindowHeight] = useState(0);
     const { scrollY } = useScroll();
-    
-    // Ref para el componente AboutMe
-    const aboutMeRef = useRef(refAbout);
 
     // Configuración del parallax con diferentes velocidades
     const midgroundY = useTransform(scrollY, [0, 1000], [0, -150]);
@@ -25,15 +22,8 @@ const Description = ({refAbout}) => {
         setWindowHeight(window.innerHeight);
     }, []);
 
-    const scrollToAboutMe = () => {
-        if (aboutMeRef.current) {            
-            aboutMeRef.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-            
-        }
-    };
+    const scrollTo = (ref) =>
+        ref?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
     return (
         <Box position="relative" overflow="hidden">
@@ -43,6 +33,7 @@ const Description = ({refAbout}) => {
                 height="100vh"
                 overflow="hidden"
                 bg="linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)"
+                ref={heroRef}
             >
                 {/* Capa de fondo con parallax */}
                 <MotionBox
@@ -151,7 +142,7 @@ const Description = ({refAbout}) => {
                                     px={8}
                                     boxShadow="0 8px 25px rgba(229, 62, 62, 0.3)"
                                     transition="all 0.3s ease"
-                                    onClick={scrollToAboutMe}
+                                    onClick={() => scrollTo(refAbout)}
                                 >
                                     Sobre mí
                                 </Button>
@@ -183,9 +174,9 @@ const Description = ({refAbout}) => {
                     </Flex>
                 </Container>
             </Box>
-            
+
             {/* Componente AboutMe con ref */}
-            <Box pt='80px' ref={aboutMeRef}>
+            <Box pt='80px' ref={refAbout}>
                 <AboutMe />
             </Box>
         </Box>

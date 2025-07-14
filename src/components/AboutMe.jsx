@@ -30,7 +30,6 @@ import {
     FaPython,
     FaGithub,
     FaLinkedin,
-    FaTwitter,
     FaMapMarkerAlt,
     FaBriefcase,
     FaGraduationCap,
@@ -70,16 +69,16 @@ const AboutMe = () => {
         avatar: "../../public/yo4.jpg",
         bio: "Soy Herbert Joaquin Figueroa Alvarez, un desarrollador web Junior de 18 años que le apasiona seguir aprendiendo de todo sobre la programacion y el software en general. Soy una persona proactiva que quiere seguir superandose y con la posibilidad de seguir escalando en lo profesional.",
         skills: [
-            { name: "React", level: 88, color: "blue.500", icon: FaReact },
-            { name: "Node.js", level: 85, color: "green.500", icon: FaNodeJs },
-            { name: "Python", level: 40, color: "yellow.500", icon: FaPython },
-            { name: "JAVA", level: 80, color: "red.600", icon: FaJava },
-            { name: "MySQL", level: 80, color: "purple.500", icon: FaDatabase },
-            { name: "Git", level: 90, color: "orange.500", icon: FaGithub },
-            { name: "MongoDB", level: 90, color: "green.500", icon: FaDatabase },
-            { name: "HTML", level: 80, color: "orange.500", icon: FaHtml5 },
-            { name: "CSS", level: 60, color: "blue.500", icon: FaCss3 },
-            { name: "Chakra UI", level: 80, color: "cyan.500", icon: FaUikit },
+            { name: "React", level: 88, color: "blue.500", icon: FaReact, colorScheme: 'react' },
+            { name: "Node.js", level: 85, color: "green.500", icon: FaNodeJs, colorScheme: 'node' },
+            { name: "Python", level: 40, color: "yellow.500", icon: FaPython, colorScheme: 'python' },
+            { name: "JAVA", level: 80, color: "red.600", icon: FaJava, colorScheme: 'java' },
+            { name: "MySQL", level: 80, color: "purple.500", icon: FaDatabase, colorScheme: 'mysql' },
+            { name: "Git", level: 90, color: "gray.500", icon: FaGithub, colorScheme: 'git' },
+            { name: "MongoDB", level: 90, color: "green.500", icon: FaDatabase, colorScheme: 'mongodb' },
+            { name: "HTML", level: 80, color: "orange.500", icon: FaHtml5, colorScheme: 'html' },
+            { name: "CSS", level: 60, color: "blue.500", icon: FaCss3, colorScheme: 'css' },
+            { name: "Chakra UI", level: 80, color: "cyan.500", icon: FaUikit, colorScheme: 'chakra' },
         ],
         achievements: [
             { title: "Elegido para la expokinal", year: "2025", icon: FaAward },
@@ -253,7 +252,7 @@ const AboutMe = () => {
                                                     {skill.name}
                                                 </Text>
                                             </HStack>
-                                            <Badge colorScheme="red" variant="subtle">
+                                            <Badge colorScheme={skill.colorScheme} variant="subtle">
                                                 {skill.level}%
                                             </Badge>
                                         </HStack>
@@ -265,7 +264,7 @@ const AboutMe = () => {
                                         >
                                             <Progress
                                                 value={skill.level}
-                                                colorScheme="red"
+                                                colorScheme={skill.colorScheme}
                                                 size="lg"
                                                 borderRadius="full"
                                                 bg="gray.100"
@@ -355,7 +354,7 @@ const AboutMe = () => {
                                                     <Text fontSize="sm" color={mutedColor}>
                                                         Email
                                                     </Text>
-                                                    <Text fontWeight="bold" fontSize="sm" color={textColor}>
+                                                    <Text as='a' fontWeight="bold" fontSize="sm" color={textColor} href='mailto:figueroaalvarez594@gmail.com' >
                                                         {person.email}
                                                     </Text>
                                                 </VStack>
@@ -375,7 +374,7 @@ const AboutMe = () => {
                                                     <Text fontSize="sm" color={mutedColor}>
                                                         Teléfono
                                                     </Text>
-                                                    <Text fontWeight="bold" fontSize="sm" color={textColor}>
+                                                    <Text as='a' fontWeight="bold" fontSize="sm" color={textColor} href='tel:58694127' >
                                                         {person.phone}
                                                     </Text>
                                                 </VStack>
