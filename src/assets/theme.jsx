@@ -45,6 +45,10 @@ const theme = extendTheme({
     chakra: {
       100: '#00B5D8',
       200: '#00B5D8',
+    },
+    render: {
+      100: '#9F7AEA',
+      200: '#9F7AEA'
     }
   }
 })

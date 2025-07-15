@@ -46,7 +46,8 @@ import {
     FaDatabase,
     FaHtml5,
     FaCss3,
-    FaUikit
+    FaUikit,
+    FaFire
 } from 'react-icons/fa';
 
 const MotionBox = motion(Box);
@@ -95,6 +96,8 @@ const AboutMe = () => {
             { name: "HTML", level: 80, color: "orange.500", icon: FaHtml5, colorScheme: 'orange' },
             { name: "CSS", level: 60, color: "blue.500", icon: FaCss3, colorScheme: 'blue' },
             { name: "Chakra UI", level: 80, color: "cyan.500", icon: FaUikit, colorScheme: 'cyan' },
+            { name: "Firebase", level: 75, color: "orange.400", icon: FaFire, colorScheme: 'orange'},
+            { name: "Render", level: 70, color: "purple.400", icon: FaCode, colorScheme: 'purple'}
         ],
         achievements: [
             { title: "Elegido para la expokinal", year: "2025", icon: FaAward },
