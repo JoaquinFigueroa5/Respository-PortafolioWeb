@@ -46,8 +46,8 @@ const Contact = ({contactRef}) => {
     const accentColor = useColorModeValue('red.400', 'red.300');
 
     const socialLinks = [
-        { icon: FaGithub, href: '#', label: 'GitHub' },
-        { icon: FaLinkedin, href: '#', label: 'LinkedIn' },
+        { icon: FaGithub, href: 'https://github.com/JoaquinFigueroa5', label: 'GitHub' },
+        { icon: FaLinkedin, href: 'https://www.linkedin.com/in/joaquin-figueroa-284292346/', label: 'LinkedIn' },
         { icon: FaTwitter, href: '#', label: 'Twitter' },
         { icon: FaInstagram, href: '#', label: 'Instagram' },
     ];
@@ -124,11 +124,11 @@ const Contact = ({contactRef}) => {
                                 <VStack align="start" spacing={3} w="full">
                                     <HStack>
                                         <FaEnvelope color="red.400" />
-                                        <Text>contacto@ejemplo.com</Text>
+                                        <Text as='a' href='mailto:figueroaalvarez594@gmail.com' >figueroaalvarez594@gmail.com</Text>
                                     </HStack>
                                     <HStack>
                                         <FaPhone color="red.400" />
-                                        <Text>+502 1234-5678</Text>
+                                        <Text as='a' href='tel:58694127' >+502 5869-4127</Text>
                                     </HStack>
                                     <HStack>
                                         <FaMapMarkerAlt color="red.400" />
@@ -194,7 +194,7 @@ const Contact = ({contactRef}) => {
                                     Newsletter
                                 </Heading>
                                 <Text fontSize="sm" opacity={0.9}>
-                                    Suscríbete para recibir actualizaciones sobre mis proyectos y artículos.
+                                    Si quieres enviarme un correo directamente puedes hacerlo:D
                                 </Text>
                                 <VStack w="full" spacing={3}>
                                     <Input
@@ -214,7 +214,7 @@ const Contact = ({contactRef}) => {
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                     >
-                                        Suscribirse
+                                        Enviar
                                     </MotionButton>
                                 </VStack>
                             </VStack>
@@ -229,7 +229,7 @@ const Contact = ({contactRef}) => {
                 <MotionBox variants={itemVariants}>
                     <HStack justify="space-between" align="center" flexWrap="wrap">
                         <Text fontSize="sm" opacity={0.8}>
-                            © 2025 Tu Nombre. Todos los derechos reservados.
+                            © 2025 Herbert Joaquin Figueroa Alvarez. Todos los derechos reservados.
                         </Text>
                         <HStack spacing={4}>
                             <Link href="#" fontSize="sm" _hover={{ color: accentColor }}>

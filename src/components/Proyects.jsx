@@ -32,7 +32,9 @@ const projectsData = [
             "../../public/AutoVentas/carousel.png",
             "../../public/AutoVentas/cards.png",
             "../../public/AutoVentas/modal.png"
-        ]
+        ],
+        github: 'https://github.com/JoaquinFigueroa5/Repository-AutoVentas.git',
+        deploy: ''
     },
     {
         id: 2,
@@ -43,7 +45,9 @@ const projectsData = [
             "../../public/Bancos/dashboard.png",
             "../../public/Bancos/favoritos.png",
             "../../public/Bancos/usuarios.png"
-        ]
+        ],
+        github: 'https://github.com/JoaquinFigueroa5/Repository-FrontendBanco.git',
+        deploy: ''
     },
     {
         id: 3,
@@ -54,7 +58,9 @@ const projectsData = [
             "../../public/Blog/dashboard.png",
             "../../public/Blog/Publications.png",
             "../../public/Blog/Comentarios.png",
-        ]
+        ],
+        github: 'https://github.com/JoaquinFigueroa5/Repository-BlogFrontend.git',
+        deploy: ''
     },
     {
         id: 4,
@@ -66,7 +72,9 @@ const projectsData = [
             "../../public/Videntia/analizando.png",
             "../../public/Videntia/respuesta.png",
             "../../public/Videntia/gmail.png",
-        ]
+        ],
+        github: 'https://github.com/LuisDeLeon24/MetadataExperimentos.git',
+        deploy: ''
     }
 ];
 
@@ -217,11 +225,13 @@ const ProjectCard = ({ project }) => {
                         Ver Demo
                     </Button>
                     <Button
+                        as='a'
                         leftIcon={<Github size={16} />}
                         colorScheme="red"
                         variant="outline"
                         size="sm"
                         flex={1}
+                        href={project.github}
                     >
                         Código
                     </Button>
