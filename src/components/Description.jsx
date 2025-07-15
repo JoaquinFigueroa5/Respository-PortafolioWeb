@@ -30,7 +30,8 @@ const Description = ({ refAbout, heroRef }) => {
             {/* Sección Hero con Parallax */}
             <Box
                 position="relative"
-                height="100vh"
+                height={{ base: "100vh", md: "100vh" }}
+                minHeight={{ base: "600px", md: "700px" }}
                 overflow="hidden"
                 bg="linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)"
                 ref={heroRef}
@@ -48,13 +49,13 @@ const Description = ({ refAbout, heroRef }) => {
                     bgImg={'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIckAWo05yz4r56LnNAeVqAJAmLBEDd3SMRNhlcE6RmD4bbWkLqLPJbr5VpBOnFXriD7SvJIz30nJafAuIfW3zw6JrOP6RAGxEpV0VEIm-wjbG4ljlvF5-ioVKNfvQwrL8qSXe7BMhqHC8/w1200-h630-p-k-no-nu/phpCode.pnghttps://www.hostingplus.lat/wp-content/uploads/2021/11/editor_codigo.jpg'}
                 />
 
-                {/* Elementos decorativos animados */}
+                {/* Elementos decorativos animados - responsive */}
                 <MotionBox
                     position="absolute"
-                    top="20%"
-                    right="10%"
-                    width="200px"
-                    height="200px"
+                    top={{ base: "15%", md: "20%" }}
+                    right={{ base: "5%", md: "10%" }}
+                    width={{ base: "120px", md: "200px" }}
+                    height={{ base: "120px", md: "200px" }}
                     borderRadius="50%"
                     bg="rgba(229, 62, 62, 0.2)"
                     style={{ y: midgroundY, rotate: rotation }}
@@ -71,10 +72,10 @@ const Description = ({ refAbout, heroRef }) => {
 
                 <MotionBox
                     position="absolute"
-                    top="60%"
-                    left="5%"
-                    width="150px"
-                    height="150px"
+                    top={{ base: "65%", md: "60%" }}
+                    left={{ base: "2%", md: "5%" }}
+                    width={{ base: "100px", md: "150px" }}
+                    height={{ base: "100px", md: "150px" }}
                     borderRadius="20px"
                     bg="rgba(197, 48, 48, 0.3)"
                     style={{ y: foregroundY, rotate: rotation }}
@@ -90,7 +91,13 @@ const Description = ({ refAbout, heroRef }) => {
                 />
 
                 {/* Contenido principal */}
-                <Container maxW="container.xl" height="100%" position="relative" zIndex="10">
+                <Container
+                    maxW={{ base: "container.sm", md: "container.md", lg: "container.xl" }}
+                    height="100%"
+                    position="relative"
+                    zIndex="10"
+                    px={{ base: 4, md: 8 }}
+                >
                     <Flex
                         direction="column"
                         justify="center"
@@ -100,49 +107,64 @@ const Description = ({ refAbout, heroRef }) => {
                     >
                         <MotionHeading
                             as="h1"
-                            size="4xl"
+                            size={{ base: "2xl", md: "3xl", lg: "4xl" }}
                             color="white"
-                            mb={6}
+                            mb={{ base: 4, md: 6 }}
                             textShadow="0 4px 20px rgba(0,0,0,0.5)"
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 0.2 }}
+                            lineHeight={{ base: "1.2", md: "1.1" }}
                         >
                             Portafolio
-                            <Text as="span" color="red.400" ml={4}>
+                            <Text
+                                as="span"
+                                color="red.400"
+                                ml={{ base: 2, md: 4 }}
+                                display={{ base: "block", sm: "inline" }}
+                            >
                                 Web
                             </Text>
                         </MotionHeading>
 
                         <MotionText
-                            fontSize="xl"
+                            fontSize={{ base: "md", md: "lg", lg: "xl" }}
                             color="gray.200"
-                            mb={8}
-                            maxW="600px"
+                            mb={{ base: 6, md: 8 }}
+                            maxW={{ base: "90%", md: "600px" }}
+                            px={{ base: 4, md: 0 }}
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 0.5 }}
+                            lineHeight={{ base: "1.5", md: "1.4" }}
                         >
                             Si lo imaginas, lo puedes programar - Joaquin Figueroa
                         </MotionText>
 
-                        <HStack spacing={4}>
+                        <Flex
+                            direction={{ base: "column", sm: "row" }}
+                            gap={{ base: 4, sm: 4 }}
+                            align="center"
+                            justify="center"
+                            w="100%"
+                        >
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.8, delay: 0.8 }}
                             >
                                 <Button
-                                    size="lg"
+                                    size={{ base: "md", md: "lg" }}
                                     bg="red.500"
                                     color="white"
                                     _hover={{ bg: "red.600", transform: "translateY(-2px)" }}
                                     _active={{ bg: "red.700" }}
                                     borderRadius="full"
-                                    px={8}
+                                    px={{ base: 6, md: 8 }}
                                     boxShadow="0 8px 25px rgba(229, 62, 62, 0.3)"
                                     transition="all 0.3s ease"
                                     onClick={() => scrollTo(refAbout)}
+                                    width={{ base: "200px", sm: "auto" }}
                                 >
                                     Sobre mí
                                 </Button>
@@ -154,7 +176,7 @@ const Description = ({ refAbout, heroRef }) => {
                                 transition={{ duration: 0.8, delay: 1 }}
                             >
                                 <Button
-                                    size="lg"
+                                    size={{ base: "md", md: "lg" }}
                                     variant="outline"
                                     borderColor="red.400"
                                     color="red.400"
@@ -164,19 +186,20 @@ const Description = ({ refAbout, heroRef }) => {
                                         transform: "translateY(-2px)"
                                     }}
                                     borderRadius="full"
-                                    px={8}
+                                    px={{ base: 6, md: 8 }}
                                     transition="all 0.3s ease"
+                                    width={{ base: "200px", sm: "auto" }}
                                 >
                                     Aprender Más
                                 </Button>
                             </motion.div>
-                        </HStack>
+                        </Flex>
                     </Flex>
                 </Container>
             </Box>
 
             {/* Componente AboutMe con ref */}
-            <Box pt='80px' ref={refAbout}>
+            <Box pt={{ base: "60px", md: "80px" }} ref={refAbout}>
                 <AboutMe />
             </Box>
         </Box>

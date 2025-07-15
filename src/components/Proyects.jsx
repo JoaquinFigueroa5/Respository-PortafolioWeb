@@ -29,9 +29,9 @@ const projectsData = [
         description: "Trabajo profesional donde se hizo un catalogo general de todos los vehiculos que estan en venta cono sus respectivos filtros.",
         technologies: ["React", "Node.js", "MongoDB", "Express.js", "Chakra-UI"],
         images: [
-            "../../public/AutoVentas/carousel.png",
-            "../../public/AutoVentas/cards.png",
-            "../../public/AutoVentas/modal.png"
+            "/AutoVentas/carousel.png",
+            "/AutoVentas/cards.png",
+            "/AutoVentas/modal.png"
         ],
         github: 'https://github.com/JoaquinFigueroa5/Repository-AutoVentas.git',
         deploy: ''
@@ -42,9 +42,9 @@ const projectsData = [
         description: "Aplicación para la gestion de recursos bancarios como transferencia y depositos con funciones aisladas para administrador y cliente.",
         technologies: ["React.js", "Chakra-UI", "MongoDB", "Express.js", "Node.js"],
         images: [
-            "../../public/Bancos/dashboard.png",
-            "../../public/Bancos/favoritos.png",
-            "../../public/Bancos/usuarios.png"
+            "/Bancos/dashboard.png",
+            "/Bancos/favoritos.png",
+            "/Bancos/usuarios.png"
         ],
         github: 'https://github.com/JoaquinFigueroa5/Repository-FrontendBanco.git',
         deploy: ''
@@ -55,9 +55,9 @@ const projectsData = [
         description: "Proyecto de un blog donde en los cursos correspondientes hay publicaciones y se pueden comentar sobre las publicaciones.",
         technologies: ["React.js", "MongoDB", "Express.js", "Node.js", "Chakra-UI"],
         images: [
-            "../../public/Blog/dashboard.png",
-            "../../public/Blog/Publications.png",
-            "../../public/Blog/Comentarios.png",
+            "/Blog/dashboard.png",
+            "/Blog/Publications.png",
+            "/Blog/Comentarios.png",
         ],
         github: 'https://github.com/JoaquinFigueroa5/Repository-BlogFrontend.git',
         deploy: ''
@@ -68,10 +68,10 @@ const projectsData = [
         description: "Aplicacion impulsada por IA para reconocer y describir imagenes de manera especifica y poder enviar los resultado al gmail personal.",
         technologies: ["React.js", "API REST", "Chakra-UI", "IA"],
         images: [
-            "../../public/Videntia/dashboard.png",
-            "../../public/Videntia/analizando.png",
-            "../../public/Videntia/respuesta.png",
-            "../../public/Videntia/gmail.png",
+            "/Videntia/dashboard.png",
+            "/Videntia/analizando.png",
+            "/Videntia/respuesta.png",
+            "/Videntia/gmail.png",
         ],
         github: 'https://github.com/LuisDeLeon24/MetadataExperimentos.git',
         deploy: ''

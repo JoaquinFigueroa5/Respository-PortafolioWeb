@@ -171,7 +171,11 @@ const App = () => {
                     transform: 'translateX(10px)',
                   }}
                   transition="all 0.3s ease"
-                  onClick={onClose}
+                  onClick={() => {
+                    onClose
+                    scrollTo(item.ref)
+                    }
+                  }
                 >
                   {item.label}
                 </Button>

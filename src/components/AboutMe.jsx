@@ -20,7 +20,10 @@ import {
     CardBody,
     Tooltip,
     Image,
-    IconButton
+    IconButton,
+    useBreakpointValue,
+    Stack,
+    SimpleGrid
 } from '@chakra-ui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -60,25 +63,38 @@ const AboutMe = () => {
     const textColor = useColorModeValue('gray.800', 'white');
     const mutedColor = useColorModeValue('gray.600', 'gray.400');
 
+    // Responsive breakpoints
+    const containerMaxW = useBreakpointValue({ base: 'container.sm', md: 'container.md', lg: 'container.xl' });
+    const headerDirection = useBreakpointValue({ base: 'column', md: 'row' });
+    const avatarSize = useBreakpointValue({ base: 'xl', md: '2xl' });
+    const headerSpacing = useBreakpointValue({ base: 4, md: 6 });
+    const cardPadding = useBreakpointValue({ base: 4, md: 6, lg: 8 });
+    const tabsDirection = useBreakpointValue({ base: 'column', sm: 'row' });
+    const tabsSpacing = useBreakpointValue({ base: 2, sm: 4 });
+    const buttonSize = useBreakpointValue({ base: 'sm', md: 'md' });
+    const headingSize = useBreakpointValue({ base: 'lg', md: 'xl' });
+    const roleSize = useBreakpointValue({ base: 'md', md: 'lg' });
+    const gridMinWidth = useBreakpointValue({ base: '200px', md: '250px' });
+
     const person = {
         name: "Joaquin Figueroa",
         role: "Junior Full Stack Developer",
         location: "Ciudad de Guatemala",
         email: "figueroaalvarez594@email.com",
         phone: "+502 5869-4127",
-        avatar: "../../public/yo4.jpg",
+        avatar: "/yo4.jpg",
         bio: "Soy Herbert Joaquin Figueroa Alvarez, un desarrollador web Junior de 18 años que le apasiona seguir aprendiendo de todo sobre la programacion y el software en general. Soy una persona proactiva que quiere seguir superandose y con la posibilidad de seguir escalando en lo profesional.",
         skills: [
-            { name: "React", level: 88, color: "blue.500", icon: FaReact, colorScheme: 'react' },
-            { name: "Node.js", level: 85, color: "green.500", icon: FaNodeJs, colorScheme: 'node' },
-            { name: "Python", level: 40, color: "yellow.500", icon: FaPython, colorScheme: 'python' },
-            { name: "JAVA", level: 80, color: "red.600", icon: FaJava, colorScheme: 'java' },
-            { name: "MySQL", level: 80, color: "purple.500", icon: FaDatabase, colorScheme: 'mysql' },
-            { name: "Git", level: 90, color: "gray.500", icon: FaGithub, colorScheme: 'git' },
-            { name: "MongoDB", level: 90, color: "green.500", icon: FaDatabase, colorScheme: 'mongodb' },
-            { name: "HTML", level: 80, color: "orange.500", icon: FaHtml5, colorScheme: 'html' },
-            { name: "CSS", level: 60, color: "blue.500", icon: FaCss3, colorScheme: 'css' },
-            { name: "Chakra UI", level: 80, color: "cyan.500", icon: FaUikit, colorScheme: 'chakra' },
+            { name: "React", level: 88, color: "blue.500", icon: FaReact, colorScheme: 'blue' },
+            { name: "Node.js", level: 85, color: "green.500", icon: FaNodeJs, colorScheme: 'green' },
+            { name: "Python", level: 40, color: "yellow.500", icon: FaPython, colorScheme: 'yellow' },
+            { name: "JAVA", level: 80, color: "red.600", icon: FaJava, colorScheme: 'red' },
+            { name: "MySQL", level: 80, color: "purple.500", icon: FaDatabase, colorScheme: 'purple' },
+            { name: "Git", level: 90, color: "gray.500", icon: FaGithub, colorScheme: 'gray' },
+            { name: "MongoDB", level: 90, color: "green.500", icon: FaDatabase, colorScheme: 'green' },
+            { name: "HTML", level: 80, color: "orange.500", icon: FaHtml5, colorScheme: 'orange' },
+            { name: "CSS", level: 60, color: "blue.500", icon: FaCss3, colorScheme: 'blue' },
+            { name: "Chakra UI", level: 80, color: "cyan.500", icon: FaUikit, colorScheme: 'cyan' },
         ],
         achievements: [
             { title: "Elegido para la expokinal", year: "2025", icon: FaAward },
@@ -153,16 +169,16 @@ const AboutMe = () => {
                     >
                         <VStack spacing={6} align="stretch">
                             <motion.div variants={itemVariants}>
-                                <Text fontSize="lg" color={mutedColor} lineHeight="1.8">
+                                <Text fontSize={{ base: 'md', md: 'lg' }} color={mutedColor} lineHeight="1.8">
                                     {person.bio}
                                 </Text>
                             </motion.div>
 
                             <motion.div variants={itemVariants}>
-                                <Heading size="md" mb={4} color={textColor}>
+                                <Heading size={{ base: 'sm', md: 'md' }} mb={4} color={textColor}>
                                     Logros Destacados
                                 </Heading>
-                                <Grid templateColumns="repeat(auto-fit, minmax(250px, 1fr))" gap={4}>
+                                <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
                                     {person.achievements.map((achievement, index) => (
                                         <MotionCard
                                             key={index}
@@ -175,43 +191,48 @@ const AboutMe = () => {
                                             }}
                                             cursor="pointer"
                                         >
-                                            <CardBody>
-                                                <HStack spacing={3}>
-                                                    <Icon as={achievement.icon} color="red.500" boxSize={6} />
-                                                    <VStack align="start" spacing={1}>
-                                                        <Text fontWeight="bold" fontSize="sm" color={textColor}>
+                                            <CardBody p={{ base: 3, md: 4 }}>
+                                                <Stack direction={{ base: 'column', sm: 'row' }} spacing={3} align={{ base: 'center', sm: 'flex-start' }}>
+                                                    <Icon as={achievement.icon} color="red.500" boxSize={{ base: 5, md: 6 }} />
+                                                    <VStack align={{ base: 'center', sm: 'start' }} spacing={1}>
+                                                        <Text
+                                                            fontWeight="bold"
+                                                            fontSize={{ base: 'xs', md: 'sm' }}
+                                                            color={textColor}
+                                                            textAlign={{ base: 'center', sm: 'left' }}
+                                                        >
                                                             {achievement.title}
                                                         </Text>
-                                                        <Text fontSize="xs" color={mutedColor}>
+                                                        <Text fontSize={{ base: 'xs', md: 'xs' }} color={mutedColor}>
                                                             {achievement.year}
                                                         </Text>
                                                     </VStack>
-                                                </HStack>
+                                                </Stack>
                                             </CardBody>
                                         </MotionCard>
                                     ))}
-                                </Grid>
+                                </SimpleGrid>
                             </motion.div>
 
                             <motion.div variants={itemVariants}>
-                                <Heading size="md" mb={4} color={textColor}>
+                                <Heading size={{ base: 'sm', md: 'md' }} mb={4} color={textColor}>
                                     Intereses
                                 </Heading>
-                                <Flex wrap="wrap" gap={3}>
+                                <Flex wrap="wrap" gap={2} justify={{ base: 'center', md: 'flex-start' }}>
                                     {person.interests.map((interest, index) => (
                                         <MotionBadge
                                             key={index}
                                             colorScheme="red"
                                             variant="subtle"
-                                            px={3}
+                                            px={{ base: 2, md: 3 }}
                                             py={2}
                                             borderRadius="full"
-                                            fontSize="sm"
+                                            fontSize={{ base: 'xs', md: 'sm' }}
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.95 }}
                                             cursor="pointer"
                                         >
-                                            <Icon as={FaHeart} mr={2} boxSize={3} />
+                                            <Icon as={FaHeart} mr={1} boxSize={3} />
                                             {interest}
                                         </MotionBadge>
                                     ))}
@@ -228,7 +249,7 @@ const AboutMe = () => {
                         animate="visible"
                         variants={containerVariants}
                     >
-                        <VStack spacing={6} align="stretch">
+                        <VStack spacing={4} align="stretch">
                             {person.skills.map((skill, index) => (
                                 <motion.div
                                     key={index}
@@ -237,7 +258,7 @@ const AboutMe = () => {
                                     onHoverEnd={() => setSelectedSkill(null)}
                                 >
                                     <Box
-                                        p={4}
+                                        p={{ base: 3, md: 4 }}
                                         bg={cardBg}
                                         borderRadius="lg"
                                         border="1px solid"
@@ -245,17 +266,23 @@ const AboutMe = () => {
                                         transition="all 0.3s ease"
                                         cursor="pointer"
                                     >
-                                        <HStack justify="space-between" mb={3}>
+                                        <Stack
+                                            direction={{ base: 'column', sm: 'row' }}
+                                            justify="space-between"
+                                            align={{ base: 'flex-start', sm: 'center' }}
+                                            mb={3}
+                                            spacing={2}
+                                        >
                                             <HStack spacing={3}>
                                                 <Icon as={skill.icon} color={skill.color} boxSize={5} />
-                                                <Text fontWeight="bold" color={textColor}>
+                                                <Text fontWeight="bold" color={textColor} fontSize={{ base: 'sm', md: 'md' }}>
                                                     {skill.name}
                                                 </Text>
                                             </HStack>
-                                            <Badge colorScheme={skill.colorScheme} variant="subtle">
+                                            <Badge colorScheme={skill.colorScheme} variant="subtle" fontSize={{ base: 'xs', md: 'sm' }}>
                                                 {skill.level}%
                                             </Badge>
-                                        </HStack>
+                                        </Stack>
                                         <motion.div
                                             initial="hidden"
                                             animate="visible"
@@ -265,7 +292,7 @@ const AboutMe = () => {
                                             <Progress
                                                 value={skill.level}
                                                 colorScheme={skill.colorScheme}
-                                                size="lg"
+                                                size={{ base: 'md', md: 'lg' }}
                                                 borderRadius="full"
                                                 bg="gray.100"
                                             />
@@ -284,7 +311,7 @@ const AboutMe = () => {
                         animate="visible"
                         variants={containerVariants}
                     >
-                        <VStack spacing={6} align="stretch">
+                        <VStack spacing={4} align="stretch">
                             {person.experience.map((exp, index) => (
                                 <motion.div key={index} variants={itemVariants}>
                                     <MotionCard
@@ -293,34 +320,51 @@ const AboutMe = () => {
                                         borderColor="gray.200"
                                         whileHover={{
                                             borderColor: "red.300",
-                                            transform: "translateX(10px)"
+                                            transform: { base: "translateY(-2px)", md: "translateX(10px)" }
                                         }}
                                         transition={{ duration: 0.3 }}
                                     >
-                                        <CardBody>
+                                        <CardBody p={{ base: 4, md: 6 }}>
                                             <VStack align="start" spacing={3}>
-                                                <HStack justify="space-between" width="100%">
+                                                <Stack
+                                                    direction={{ base: 'column', md: 'row' }}
+                                                    justify="space-between"
+                                                    width="100%"
+                                                    align={{ base: 'flex-start', md: 'center' }}
+                                                    spacing={2}
+                                                >
                                                     <VStack align="start" spacing={1}>
-                                                        <Text fontWeight="bold" fontSize="lg" color={textColor}>
+                                                        <Text
+                                                            fontWeight="bold"
+                                                            fontSize={{ base: 'md', md: 'lg' }}
+                                                            color={textColor}
+                                                        >
                                                             {exp.position}
                                                         </Text>
-                                                        <Text color="red.500" fontWeight="semibold">
+                                                        <Text
+                                                            color="red.500"
+                                                            fontWeight="semibold"
+                                                            fontSize={{ base: 'sm', md: 'md' }}
+                                                        >
                                                             {exp.company}
                                                         </Text>
                                                     </VStack>
                                                     <Badge
                                                         colorScheme="red"
                                                         variant="outline"
-                                                        fontSize="lg"   
-                                                        px={4}          
-                                                        py={1}           
+                                                        fontSize={{ base: 'xs', md: 'sm' }}
+                                                        px={{ base: 2, md: 4 }}
+                                                        py={1}
                                                         borderRadius="md"
                                                     >
                                                         {exp.duration}
                                                     </Badge>
-
-                                                </HStack>
-                                                <Text color={mutedColor} lineHeight="1.6">
+                                                </Stack>
+                                                <Text
+                                                    color={mutedColor}
+                                                    lineHeight="1.6"
+                                                    fontSize={{ base: 'sm', md: 'md' }}
+                                                >
                                                     {exp.description}
                                                 </Text>
                                             </VStack>
@@ -341,20 +385,27 @@ const AboutMe = () => {
                     >
                         <VStack spacing={6} align="stretch">
                             <motion.div variants={itemVariants}>
-                                <Grid templateColumns="repeat(auto-fit, minmax(250px, 1fr))" gap={4}>
+                                <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
                                     <MotionCard
                                         bg={cardBg}
                                         whileHover={{ scale: 1.05 }}
                                         cursor="pointer"
                                     >
-                                        <CardBody>
+                                        <CardBody p={{ base: 4, md: 6 }}>
                                             <HStack spacing={3}>
                                                 <Icon as={FaEnvelope} color="red.500" boxSize={5} />
                                                 <VStack align="start" spacing={1}>
-                                                    <Text fontSize="sm" color={mutedColor}>
+                                                    <Text fontSize={{ base: 'xs', md: 'sm' }} color={mutedColor}>
                                                         Email
                                                     </Text>
-                                                    <Text as='a' fontWeight="bold" fontSize="sm" color={textColor} href='mailto:figueroaalvarez594@gmail.com' >
+                                                    <Text
+                                                        as='a'
+                                                        fontWeight="bold"
+                                                        fontSize={{ base: 'xs', md: 'sm' }}
+                                                        color={textColor}
+                                                        href='mailto:figueroaalvarez594@gmail.com'
+                                                        wordBreak="break-all"
+                                                    >
                                                         {person.email}
                                                     </Text>
                                                 </VStack>
@@ -367,28 +418,34 @@ const AboutMe = () => {
                                         whileHover={{ scale: 1.05 }}
                                         cursor="pointer"
                                     >
-                                        <CardBody>
+                                        <CardBody p={{ base: 4, md: 6 }}>
                                             <HStack spacing={3}>
                                                 <Icon as={FaPhone} color="red.500" boxSize={5} />
                                                 <VStack align="start" spacing={1}>
-                                                    <Text fontSize="sm" color={mutedColor}>
+                                                    <Text fontSize={{ base: 'xs', md: 'sm' }} color={mutedColor}>
                                                         Teléfono
                                                     </Text>
-                                                    <Text as='a' fontWeight="bold" fontSize="sm" color={textColor} href='tel:58694127' >
+                                                    <Text
+                                                        as='a'
+                                                        fontWeight="bold"
+                                                        fontSize={{ base: 'xs', md: 'sm' }}
+                                                        color={textColor}
+                                                        href='tel:58694127'
+                                                    >
                                                         {person.phone}
                                                     </Text>
                                                 </VStack>
                                             </HStack>
                                         </CardBody>
                                     </MotionCard>
-                                </Grid>
+                                </SimpleGrid>
                             </motion.div>
 
                             <motion.div variants={itemVariants}>
-                                <Heading size="md" mb={4} color={textColor}>
+                                <Heading size={{ base: 'sm', md: 'md' }} mb={4} color={textColor}>
                                     Redes Sociales
                                 </Heading>
-                                <HStack spacing={4}>
+                                <Stack direction={{ base: 'file', sm: 'row' }} spacing={4} align="center">
                                     {[
                                         { icon: FaGithub, color: "gray.600", label: "GitHub", src: "https://github.com/JoaquinFigueroa5" },
                                         { icon: FaLinkedin, color: "blue.600", label: "LinkedIn", src: "https://www.linkedin.com/in/joaquin-figueroa-284292346/" },
@@ -402,16 +459,16 @@ const AboutMe = () => {
                                                 <IconButton
                                                     as='a'
                                                     href={social.src}
-                                                    boxSize={10}
+                                                    size={{ base: 'md', md: 'lg' }}
                                                     color={social.color}
                                                     variant='ghost'
                                                     aria-label={social.label}
-                                                    icon={ <Icon as={social.icon} boxSize={10} /> }
+                                                    icon={<Icon as={social.icon} boxSize={{ base: 6, md: 8 }} />}
                                                 />
                                             </MotionBox>
                                         </Tooltip>
                                     ))}
-                                </HStack>
+                                </Stack>
                             </motion.div>
                         </VStack>
                     </motion.div>
@@ -423,8 +480,8 @@ const AboutMe = () => {
     };
 
     return (
-        <Box bg={bgColor} minHeight="100vh" py={10}>
-            <Container maxW="container.xl">
+        <Box bg={bgColor} minHeight="100vh" py={{ base: 4, md: 6, lg: 10 }}>
+            <Container maxW={containerMaxW} px={{ base: 4, md: 6 }}>
                 <MotionBox
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -436,21 +493,21 @@ const AboutMe = () => {
                         borderRadius="2xl"
                         overflow="hidden"
                         boxShadow="0 25px 50px rgba(0,0,0,0.1)"
-                        mb={8}
+                        mb={{ base: 6, md: 8 }}
                         onHoverStart={() => setIsHovered(true)}
                         onHoverEnd={() => setIsHovered(false)}
                     >
                         <Box
                             bg="linear-gradient(135deg, #e53e3e 0%, #c53030 50%, #9b2c2c 100%)"
-                            height="120px"
+                            height={{ base: "80px", md: "120px" }}
                             position="relative"
                         >
                             <MotionBox
                                 position="absolute"
                                 top="-10px"
                                 right="-10px"
-                                width="100px"
-                                height="100px"
+                                width={{ base: "60px", md: "100px" }}
+                                height={{ base: "60px", md: "100px" }}
                                 borderRadius="50%"
                                 bg="rgba(255,255,255,0.1)"
                                 animate={{
@@ -461,29 +518,40 @@ const AboutMe = () => {
                             />
                         </Box>
 
-                        <CardBody position="relative" pt={0}>
-                            <HStack spacing={6} align="start">
+                        <CardBody position="relative" pt={0} p={cardPadding}>
+                            <Stack direction={headerDirection} spacing={headerSpacing} align={{ base: 'center', md: 'start' }}>
                                 <MotionBox
-                                    mt={-16}
+                                    mt={{ base: -12, md: -16 }}
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ duration: 0.3 }}
                                 >
                                     <Avatar
-                                        size="2xl"
+                                        size={avatarSize}
                                         src={person.avatar}
                                         border="6px solid white"
                                         boxShadow="0 10px 30px rgba(0,0,0,0.2)"
                                     />
                                 </MotionBox>
 
-                                <VStack align="start" spacing={2} flex={1} pt={4}>
-                                    <Heading size="xl" color={textColor}>
+                                <VStack
+                                    align={{ base: 'center', md: 'start' }}
+                                    spacing={2}
+                                    flex={1}
+                                    pt={{ base: 2, md: 4 }}
+                                    textAlign={{ base: 'center', md: 'left' }}
+                                >
+                                    <Heading size={headingSize} color={textColor}>
                                         {person.name}
                                     </Heading>
-                                    <Text fontSize="lg" color="red.500" fontWeight="semibold">
+                                    <Text fontSize={roleSize} color="red.500" fontWeight="semibold">
                                         {person.role}
                                     </Text>
-                                    <HStack spacing={4} color={mutedColor}>
+                                    <Stack
+                                        direction={{ base: 'column', sm: 'row' }}
+                                        spacing={4}
+                                        color={mutedColor}
+                                        align="center"
+                                    >
                                         <HStack spacing={1}>
                                             <Icon as={FaMapMarkerAlt} />
                                             <Text fontSize="sm">{person.location}</Text>
@@ -492,14 +560,14 @@ const AboutMe = () => {
                                             <Icon as={FaStar} color="yellow.400" />
                                             <Text fontSize="sm">4.9/5</Text>
                                         </HStack>
-                                    </HStack>
+                                    </Stack>
                                 </VStack>
-                            </HStack>
+                            </Stack>
                         </CardBody>
                     </MotionCard>
 
                     {/* Navigation Tabs */}
-                    <HStack spacing={4} mb={8} justify="center">
+                    <Stack direction={tabsDirection} spacing={tabsSpacing} mb={{ base: 6, md: 8 }} align="center">
                         {tabs.map((tab) => (
                             <Button
                                 key={tab.id}
@@ -508,14 +576,16 @@ const AboutMe = () => {
                                 leftIcon={<Icon as={tab.icon} />}
                                 onClick={() => setActiveTab(tab.id)}
                                 borderRadius="full"
-                                px={6}
+                                px={{ base: 3, md: 6 }}
+                                size={buttonSize}
                                 transform={activeTab === tab.id ? "scale(1.05)" : "scale(1)"}
                                 transition="all 0.3s ease"
+                                width={{ base: 'full', sm: 'auto' }}
                             >
                                 {tab.label}
                             </Button>
                         ))}
-                    </HStack>
+                    </Stack>
 
                     {/* Content Area */}
                     <MotionCard
@@ -524,7 +594,7 @@ const AboutMe = () => {
                         boxShadow="0 25px 50px rgba(0,0,0,0.1)"
                         overflow="hidden"
                     >
-                        <CardBody p={8}>
+                        <CardBody p={cardPadding}>
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={activeTab}
