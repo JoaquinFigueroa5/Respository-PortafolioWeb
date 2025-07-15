@@ -37,7 +37,7 @@ const projectsData = [
     {
         id: 2,
         title: "Banca Online",
-        description: "Aplicación para la gestion de recursos bancarios como transferencia y depositos.",
+        description: "Aplicación para la gestion de recursos bancarios como transferencia y depositos con funciones aisladas para administrador y cliente.",
         technologies: ["React.js", "Chakra-UI", "MongoDB", "Express.js", "Node.js"],
         images: [
             "../../public/Bancos/dashboard.png",
@@ -47,24 +47,25 @@ const projectsData = [
     },
     {
         id: 3,
-        title: "Social Media Dashboard",
-        description: "Dashboard para gestión de redes sociales con análisis de métricas y programación de publicaciones.",
-        technologies: ["React", "D3.js", "Express"],
+        title: "Blog",
+        description: "Proyecto de un blog donde en los cursos correspondientes hay publicaciones y se pueden comentar sobre las publicaciones.",
+        technologies: ["React.js", "MongoDB", "Express.js", "Node.js", "Chakra-UI"],
         images: [
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=300&fit=crop"
+            "../../public/Blog/dashboard.png",
+            "../../public/Blog/Publications.png",
+            "../../public/Blog/Comentarios.png",
         ]
     },
     {
         id: 4,
-        title: "Weather App",
-        description: "Aplicación del clima con pronósticos detallados, mapas interactivos y alertas meteorológicas.",
-        technologies: ["React Native", "API Rest", "Redux"],
+        title: "Videntia",
+        description: "Aplicacion impulsada por IA para reconocer y describir imagenes de manera especifica y poder enviar los resultado al gmail personal.",
+        technologies: ["React.js", "API REST", "Chakra-UI", "IA"],
         images: [
-            "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop"
+            "../../public/Videntia/dashboard.png",
+            "../../public/Videntia/analizando.png",
+            "../../public/Videntia/respuesta.png",
+            "../../public/Videntia/gmail.png",
         ]
     }
 ];
@@ -158,25 +159,22 @@ const ImageCarousel = ({ images, projectId }) => {
 };
 
 const ProjectCard = ({ project }) => {
-    const cardBg = useColorModeValue('white', 'gray.800');
-    const borderColor = useColorModeValue('gray.200', 'gray.600');
+    const cardBg = useColorModeValue("white", "gray.800");
+    const borderCol = useColorModeValue("gray.200", "gray.600");
 
     return (
         <MotionCard
-            maxW="sm"
+            maxW="xl"
+            mx="auto"
             bg={cardBg}
             borderWidth="1px"
-            borderColor={borderColor}
+            borderColor={borderCol}
             borderRadius="lg"
             overflow="hidden"
             shadow="lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            whileHover={{
-                y: -5,
-                shadow: "xl",
-                transition: { duration: 0.2 }
-            }}
+            whileHover={{ y: -5, shadow: "xl", transition: { duration: 0.2 } }}
             transition={{ duration: 0.3 }}
         >
             <ImageCarousel images={project.images} projectId={project.id} />
@@ -192,9 +190,9 @@ const ProjectCard = ({ project }) => {
                     </Text>
 
                     <HStack spacing={2} flexWrap="wrap">
-                        {project.technologies.map((tech, index) => (
+                        {project.technologies.map((tech, i) => (
                             <Badge
-                                key={index}
+                                key={i}
                                 colorScheme="red"
                                 variant="subtle"
                                 fontSize="xs"
@@ -209,11 +207,10 @@ const ProjectCard = ({ project }) => {
             </CardBody>
 
             <CardFooter>
-                <HStack spacing={3} width="100%">
+                <HStack spacing={3} w="100%">
                     <Button
                         leftIcon={<ExternalLink size={16} />}
                         colorScheme="red"
-                        variant="solid"
                         size="sm"
                         flex={1}
                     >
@@ -234,13 +231,15 @@ const ProjectCard = ({ project }) => {
     );
 };
 
-const ProjectsShowcase = () => {
+
+const ProjectsShowcase = ({proyectRef}) => {
     return (
         <Box
             minH="100vh"
             bgGradient='blackAlpha'
-            py={10}
+            py={5}
             px={6}
+            ref={proyectRef}
         >
             <VStack spacing={8} maxW="7xl" mx="auto">
                 <MotionBox

@@ -37,6 +37,8 @@ import {
 } from 'react-icons/fa';
 import Description from './components/Description';
 import ProjectsShowcase from './components/Proyects';
+import Contact from './components/Contact';
+import ScrollToTopButton from './components/ButtonUp';
 
 const MotionBox = motion(Box);
 const MotionFlex = motion(Flex);
@@ -53,6 +55,8 @@ const App = () => {
 
   const aboutMeRef = useRef(null);
   const heroRef = useRef(null);
+  const proyectRef = useRef(null);
+  const contactRef = useRef(null);
 
   const bgColor = useColorModeValue('rgba(255, 255, 255, 0.9)', 'rgba(26, 26, 26, 0.9)');
   const bgColorTransparent = useColorModeValue('transparent', 'transparent');
@@ -74,9 +78,9 @@ const App = () => {
   const menuItems = [
     { label: 'Inicio', ref: heroRef },
     { label: 'Sobre mí', ref: aboutMeRef },
-    { label: 'Proyectos', ref: '#proyectos' },
+    { label: 'Proyectos', ref: proyectRef },
     { label: 'Habilidades', ref: aboutMeRef },
-    { label: 'Contacto', ref: '#contacto' },
+    { label: 'Contacto', ref: contactRef },
   ];
 
   const socialLinks = [
@@ -386,8 +390,14 @@ const App = () => {
           refAbout={aboutMeRef}
           heroRef={heroRef}
         />
-        <ProjectsShowcase />
+        <ProjectsShowcase 
+          proyectRef={proyectRef} 
+        />
+        <Contact 
+          contactRef={contactRef}
+        />
       </Box>
+      <ScrollToTopButton />
     </Box>
   );
 };
