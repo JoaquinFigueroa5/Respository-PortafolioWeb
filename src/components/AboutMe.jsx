@@ -47,7 +47,8 @@ import {
     FaHtml5,
     FaCss3,
     FaUikit,
-    FaFire
+    FaFire,
+    FaEye
 } from 'react-icons/fa';
 
 const MotionBox = motion(Box);
@@ -64,7 +65,6 @@ const AboutMe = () => {
     const textColor = useColorModeValue('gray.800', 'white');
     const mutedColor = useColorModeValue('gray.600', 'gray.400');
 
-    // Responsive breakpoints
     const containerMaxW = useBreakpointValue({ base: 'container.sm', md: 'container.md', lg: 'container.xl' });
     const headerDirection = useBreakpointValue({ base: 'column', md: 'row' });
     const avatarSize = useBreakpointValue({ base: 'xl', md: '2xl' });
@@ -94,15 +94,18 @@ const AboutMe = () => {
             { name: "Git", level: 90, color: "gray.500", icon: FaGithub, colorScheme: 'gray' },
             { name: "MongoDB", level: 90, color: "green.500", icon: FaDatabase, colorScheme: 'green' },
             { name: "HTML", level: 80, color: "orange.500", icon: FaHtml5, colorScheme: 'orange' },
-            { name: "CSS", level: 60, color: "blue.500", icon: FaCss3, colorScheme: 'blue' },
+            { name: "CSS", level: 80, color: "blue.500", icon: FaCss3, colorScheme: 'blue' },
             { name: "Chakra UI", level: 80, color: "cyan.500", icon: FaUikit, colorScheme: 'cyan' },
             { name: "Firebase", level: 75, color: "orange.400", icon: FaFire, colorScheme: 'orange'},
             { name: "Render", level: 70, color: "purple.400", icon: FaCode, colorScheme: 'purple'}
         ],
         achievements: [
-            { title: "Elegido para la expokinal", year: "2025", icon: FaAward },
-            { title: "Parte de desarrollo en la universidad Mariano Galvez", year: "2025", icon: FaGithub },
-            { title: "Certificación en React por ADA-SCHOOL", year: "2025", icon: FaRocket }
+            { title: "Diploma por haber participado en SpaceApps de la NASA.", year: "2025", icon: FaAward },
+            { title: "Parte de desarrollo web en la universidad Mariano Galvez.", year: "2025", icon: FaGithub },
+            { title: "Certificación en React por ADA-SCHOOL.", year: "2025", icon: FaRocket },
+            { title: "Elegido para la ExpoKinal por buen rendimiento tecnico.", year: "2025", icon: FaCode },
+            { title: "Diploma por haber participado en Telescope de la UNIS.", year: "2025", icon: FaEye },
+            { title: "Graduado de Kinal con un Tecnico en informatica (Programador Junior).", year: "2025", icon: FaGraduationCap }
         ],
         experience: [
             {
@@ -120,7 +123,7 @@ const AboutMe = () => {
             {
                 company: "4to Diversificado - 6to Diversificado",
                 position: "Diversificado",
-                duration: "2023 - Presente",
+                duration: "2023 - 2025",
                 description: "Centro Educativo Tecnico Laboral KINAL"
             },
         ],

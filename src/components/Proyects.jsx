@@ -21,7 +21,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 const MotionBox = motion(Box);
 const MotionCard = motion(Card);
 
-// Datos de ejemplo para los proyectos
 const projectsData = [
     {
         id: 1,
@@ -34,7 +33,7 @@ const projectsData = [
             "/AutoVentas/modal.png"
         ],
         github: 'https://github.com/JoaquinFigueroa5/Repository-AutoVentas.git',
-        deploy: ''
+        deploy: 'https://autoventasjuanes-dd720.web.app/'
     },
     {
         id: 2,
@@ -47,7 +46,7 @@ const projectsData = [
             "/Bancos/usuarios.png"
         ],
         github: 'https://github.com/JoaquinFigueroa5/Repository-FrontendBanco.git',
-        deploy: ''
+        deploy: 'https://bancoonline-d49b0.web.app/'
     },
     {
         id: 3,
@@ -60,7 +59,7 @@ const projectsData = [
             "/Blog/Comentarios.png",
         ],
         github: 'https://github.com/JoaquinFigueroa5/Repository-BlogFrontend.git',
-        deploy: ''
+        deploy: 'No disponible'
     },
     {
         id: 4,
@@ -74,7 +73,7 @@ const projectsData = [
             "/Videntia/gmail.png",
         ],
         github: 'https://github.com/LuisDeLeon24/MetadataExperimentos.git',
-        deploy: ''
+        deploy: 'https://videntia-999-6d296.web.app/'
     }
 ];
 
@@ -217,10 +216,12 @@ const ProjectCard = ({ project }) => {
             <CardFooter>
                 <HStack spacing={3} w="100%">
                     <Button
+                        as='a'
                         leftIcon={<ExternalLink size={16} />}
                         colorScheme="red"
                         size="sm"
                         flex={1}
+                        href={project.deploy}
                     >
                         Ver Demo
                     </Button>
