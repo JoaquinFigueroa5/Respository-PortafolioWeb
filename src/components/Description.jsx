@@ -136,7 +136,7 @@ const Description = ({ refAbout, heroRef }) => {
                             transition={{ duration: 1, delay: 0.5 }}
                             lineHeight={{ base: "1.5", md: "1.4" }}
                         >
-                            Si lo imaginas, lo puedes programar - Joaquin Figueroa
+                            Si lo imaginas, lo puedes programar - Alejandro Taboada
                         </MotionText>
 
                         <Flex
