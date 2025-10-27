@@ -16,12 +16,10 @@ const ScrollToTopButton = () => {
     const [scrollProgress, setScrollProgress] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
 
-    // Colores y estilos
     const bgColor = useColorModeValue('red.500', 'red.600');
     const hoverBgColor = useColorModeValue('red.600', 'red.500');
     const shadowColor = useColorModeValue('red.500', 'red.600');
 
-    // Detectar scroll para mostrar/ocultar botón y calcular progreso
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.pageYOffset;
@@ -43,7 +41,6 @@ const ScrollToTopButton = () => {
         });
     };
 
-    // Variantes de animación
     const buttonVariants = {
         hidden: {
             opacity: 0,
@@ -151,12 +148,9 @@ const ScrollToTopButton = () => {
                         </svg>
                     </Box>
 
-                    {/* Efecto de pulso cuando no está hover */}
                     {!isHovered && (
                         <MotionBox
                             position="absolute"
-                            top="50%"
-                            left="50%"
                             transform="translate(-50%, -50%)"
                             w="60px"
                             h="60px"

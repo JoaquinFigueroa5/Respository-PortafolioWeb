@@ -11,11 +11,9 @@ const Description = ({ refAbout, heroRef }) => {
     const [windowHeight, setWindowHeight] = useState(0);
     const { scrollY } = useScroll();
 
-    // Configuración del parallax con diferentes velocidades
     const midgroundY = useTransform(scrollY, [0, 1000], [0, -150]);
     const foregroundY = useTransform(scrollY, [0, 1000], [0, -50]);
 
-    // Efecto de rotación sutil
     const rotation = useTransform(scrollY, [0, 1000], [0, 5]);
 
     useEffect(() => {
@@ -176,6 +174,7 @@ const Description = ({ refAbout, heroRef }) => {
                                 transition={{ duration: 0.8, delay: 1 }}
                             >
                                 <Button
+                                    as='a'
                                     size={{ base: "md", md: "lg" }}
                                     variant="outline"
                                     borderColor="red.400"
@@ -189,6 +188,7 @@ const Description = ({ refAbout, heroRef }) => {
                                     px={{ base: 6, md: 8 }}
                                     transition="all 0.3s ease"
                                     width={{ base: "200px", sm: "auto" }}
+                                    href='https://www.linkedin.com/in/joaquin-figueroa-284292346/'
                                 >
                                     Aprender Más
                                 </Button>

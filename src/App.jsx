@@ -66,7 +66,6 @@ const App = () => {
   const drawerBg = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('rgba(0, 0, 0, 0.1)', 'rgba(255, 255, 255, 0.1)');
 
-  // Efecto scroll
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);

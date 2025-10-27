@@ -17,6 +17,7 @@ import {
     HStack,
     Grid,
     GridItem,
+    Textarea,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import {
@@ -110,7 +111,6 @@ const Contact = ({contactRef}) => {
 
             <Container maxW="7xl" position="relative">
                 <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }} gap={8}>
-                    {/* Sección de contacto principal */}
                     <GridItem colSpan={{ base: 1, lg: 2 }}>
                         <MotionBox variants={itemVariants}>
                             <VStack align="start" spacing={6}>
@@ -186,19 +186,18 @@ const Contact = ({contactRef}) => {
                         </MotionBox>
                     </GridItem>
 
-                    {/* Newsletter */}
                     <GridItem>
                         <MotionBox variants={itemVariants}>
                             <VStack align="start" spacing={4}>
                                 <Heading size="md" color={accentColor}>
-                                    Newsletter
+                                    Contacto Directo
                                 </Heading>
                                 <Text fontSize="sm" opacity={0.9}>
-                                    Si quieres enviarme un correo directamente puedes hacerlo:D
+                                    Si quieres enviarme un correo directamente puedes hacerlo aqui.
                                 </Text>
                                 <VStack w="full" spacing={3}>
-                                    <Input
-                                        placeholder="Tu email"
+                                    <Textarea
+                                        placeholder="Tu mensaje aquí..."
                                         bg={cardBg}
                                         border="1px"
                                         borderColor="whiteAlpha.300"

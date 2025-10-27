@@ -9,21 +9,17 @@ import {
     Button,
     Badge,
     Progress,
-    Divider,
     Icon,
-    Flex,
     Avatar,
     useColorModeValue,
-    Grid,
-    GridItem,
     Card,
     CardBody,
     Tooltip,
-    Image,
     IconButton,
     useBreakpointValue,
     Stack,
-    SimpleGrid
+    SimpleGrid,
+    useDisclosure
 } from '@chakra-ui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -48,8 +44,13 @@ import {
     FaCss3,
     FaUikit,
     FaFire,
-    FaEye
+    FaEye,
+    FaDocker,
+    FaPhp
 } from 'react-icons/fa';
+import { GrMysql as SiMysql } from "react-icons/gr";
+import { SiMongodb, SiChakraui, SiFirebase, SiRender } from "react-icons/si";
+import ModalAchiev from './ModalAchiev';
 
 const MotionBox = motion(Box);
 const MotionCard = motion(Card);
@@ -59,6 +60,8 @@ const AboutMe = () => {
     const [activeTab, setActiveTab] = useState('about');
     const [isHovered, setIsHovered] = useState(false);
     const [selectedSkill, setSelectedSkill] = useState(null);
+    const [selectedAchievement, setSelectedAchievement] = useState(null);
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     const bgColor = useColorModeValue('gray.50', 'gray.900');
     const cardBg = useColorModeValue('white', 'gray.800');
@@ -75,7 +78,6 @@ const AboutMe = () => {
     const buttonSize = useBreakpointValue({ base: 'sm', md: 'md' });
     const headingSize = useBreakpointValue({ base: 'lg', md: 'xl' });
     const roleSize = useBreakpointValue({ base: 'md', md: 'lg' });
-    const gridMinWidth = useBreakpointValue({ base: '200px', md: '250px' });
 
     const person = {
         name: "Joaquin Figueroa",
@@ -90,14 +92,16 @@ const AboutMe = () => {
             { name: "Node.js", level: 85, color: "green.500", icon: FaNodeJs, colorScheme: 'green' },
             { name: "Python", level: 40, color: "yellow.500", icon: FaPython, colorScheme: 'yellow' },
             { name: "JAVA", level: 80, color: "red.600", icon: FaJava, colorScheme: 'red' },
-            { name: "MySQL", level: 80, color: "purple.500", icon: FaDatabase, colorScheme: 'purple' },
+            { name: "MySQL", level: 80, color: "blue.500", icon: SiMysql, colorScheme: 'blue' },
+            { name: "MongoDB", level: 90, color: "green.500", icon: SiMongodb, colorScheme: 'green' },
+            { name: "Docker", level: 70, color: "blue.400", icon: FaDocker, colorScheme: 'blue' },
             { name: "Git", level: 90, color: "gray.500", icon: FaGithub, colorScheme: 'gray' },
-            { name: "MongoDB", level: 90, color: "green.500", icon: FaDatabase, colorScheme: 'green' },
             { name: "HTML", level: 80, color: "orange.500", icon: FaHtml5, colorScheme: 'orange' },
             { name: "CSS", level: 80, color: "blue.500", icon: FaCss3, colorScheme: 'blue' },
-            { name: "Chakra UI", level: 80, color: "cyan.500", icon: FaUikit, colorScheme: 'cyan' },
-            { name: "Firebase", level: 75, color: "orange.400", icon: FaFire, colorScheme: 'orange'},
-            { name: "Render", level: 70, color: "purple.400", icon: FaCode, colorScheme: 'purple'}
+            { name: "PHP", level: 60, color: "purple.600", icon: FaPhp, colorScheme: 'purple' },
+            { name: "Chakra UI", level: 80, color: "cyan.500", icon: SiChakraui, colorScheme: 'cyan' },
+            { name: "Firebase", level: 75, color: "orange.400", icon: SiFirebase, colorScheme: 'orange' },
+            { name: "Render", level: 70, color: "purple.400", icon: SiRender, colorScheme: 'purple' }
         ],
         achievements: [
             { title: "Diploma por haber participado en SpaceApps de la NASA.", year: "2025", icon: FaAward },
@@ -136,6 +140,11 @@ const AboutMe = () => {
         { id: 'experience', label: 'Educación', icon: FaGraduationCap },
         { id: 'contact', label: 'Contacto', icon: FaEnvelope }
     ];
+
+    const handleAchievementClick = (achievement) => {
+        setSelectedAchievement(achievement);
+        setTimeout(() => onOpen(), 0);
+    };
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -183,39 +192,45 @@ const AboutMe = () => {
                             <motion.div variants={itemVariants}>
                                 <Heading size={{ base: 'sm', md: 'md' }} mb={4} color={textColor}>
                                     Logros Destacados
+                                    <Badge ml={{ base: 0, md: 5 }} colorScheme="red" variant="subtle" fontSize={{ base: 'xs', md: 'xs' }}>
+                                        Haz click en cada logro para ver más
+                                    </Badge>
                                 </Heading>
                                 <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
                                     {person.achievements.map((achievement, index) => (
-                                        <MotionCard
-                                            key={index}
-                                            bg={cardBg}
-                                            border="1px solid"
-                                            borderColor="red.200"
-                                            whileHover={{
-                                                scale: 1.05,
-                                                boxShadow: "0 10px 25px rgba(229, 62, 62, 0.2)"
-                                            }}
-                                            cursor="pointer"
-                                        >
-                                            <CardBody p={{ base: 3, md: 4 }}>
-                                                <Stack direction={{ base: 'column', sm: 'row' }} spacing={3} align={{ base: 'center', sm: 'flex-start' }}>
-                                                    <Icon as={achievement.icon} color="red.500" boxSize={{ base: 5, md: 6 }} />
-                                                    <VStack align={{ base: 'center', sm: 'start' }} spacing={1}>
-                                                        <Text
-                                                            fontWeight="bold"
-                                                            fontSize={{ base: 'xs', md: 'sm' }}
-                                                            color={textColor}
-                                                            textAlign={{ base: 'center', sm: 'left' }}
-                                                        >
-                                                            {achievement.title}
-                                                        </Text>
-                                                        <Text fontSize={{ base: 'xs', md: 'xs' }} color={mutedColor}>
-                                                            {achievement.year}
-                                                        </Text>
-                                                    </VStack>
-                                                </Stack>
-                                            </CardBody>
-                                        </MotionCard>
+                                        <Tooltip label='Click para ver más' >
+                                            <MotionCard
+                                                key={index}
+                                                bg={cardBg}
+                                                border="1px solid"
+                                                borderColor="red.200"
+                                                whileHover={{
+                                                    scale: 1.05,
+                                                    boxShadow: "0 10px 25px rgba(229, 62, 62, 0.2)"
+                                                }}
+                                                cursor="pointer"
+                                                onClick={() => handleAchievementClick(achievement)}
+                                            >
+                                                <CardBody p={{ base: 3, md: 4 }}>
+                                                    <Stack direction={{ base: 'column', sm: 'row' }} spacing={3} align={{ base: 'center', sm: 'flex-start' }}>
+                                                        <Icon as={achievement.icon} color="red.500" boxSize={{ base: 5, md: 6 }} />
+                                                        <VStack align={{ base: 'center', sm: 'start' }} spacing={1}>
+                                                            <Text
+                                                                fontWeight="bold"
+                                                                fontSize={{ base: 'xs', md: 'sm' }}
+                                                                color={textColor}
+                                                                textAlign={{ base: 'center', sm: 'left' }}
+                                                            >
+                                                                {achievement.title}
+                                                            </Text>
+                                                            <Text fontSize={{ base: 'xs', md: 'xs' }} color={mutedColor}>
+                                                                {achievement.year}
+                                                            </Text>
+                                                        </VStack>
+                                                    </Stack>
+                                                </CardBody>
+                                            </MotionCard>
+                                        </Tooltip>
                                     ))}
                                 </SimpleGrid>
                             </motion.div>
@@ -224,7 +239,7 @@ const AboutMe = () => {
                                 <Heading size={{ base: 'sm', md: 'md' }} mb={4} color={textColor}>
                                     Intereses
                                 </Heading>
-                                <Flex wrap="wrap" gap={2} justify={{ base: 'center', md: 'flex-start' }}>
+                                <Box display="flex" flexWrap="wrap" gap={2} justifyContent={{ base: 'center', md: 'flex-start' }}>
                                     {person.interests.map((interest, index) => (
                                         <MotionBadge
                                             key={index}
@@ -242,7 +257,7 @@ const AboutMe = () => {
                                             {interest}
                                         </MotionBadge>
                                     ))}
-                                </Flex>
+                                </Box>
                             </motion.div>
                         </VStack>
                     </motion.div>
@@ -451,7 +466,7 @@ const AboutMe = () => {
                                 <Heading size={{ base: 'sm', md: 'md' }} mb={4} color={textColor}>
                                     Redes Sociales
                                 </Heading>
-                                <Stack direction={{ base: 'file', sm: 'row' }} spacing={4} align="center">
+                                <Stack direction={{ base: 'column', sm: 'row' }} spacing={4} align="center">
                                     {[
                                         { icon: FaGithub, color: "gray.600", label: "GitHub", src: "https://github.com/JoaquinFigueroa5" },
                                         { icon: FaLinkedin, color: "blue.600", label: "LinkedIn", src: "https://www.linkedin.com/in/joaquin-figueroa-284292346/" },
@@ -486,137 +501,145 @@ const AboutMe = () => {
     };
 
     return (
-        <Box bg={bgColor} minHeight="100vh" py={{ base: 4, md: 6, lg: 10 }}>
-            <Container maxW={containerMaxW} px={{ base: 4, md: 6 }}>
-                <MotionBox
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
-                    {/* Header Card */}
-                    <MotionCard
-                        bg={cardBg}
-                        borderRadius="2xl"
-                        overflow="hidden"
-                        boxShadow="0 25px 50px rgba(0,0,0,0.1)"
-                        mb={{ base: 6, md: 8 }}
-                        onHoverStart={() => setIsHovered(true)}
-                        onHoverEnd={() => setIsHovered(false)}
+        <>
+            <Box bg={bgColor} minHeight="100vh" py={{ base: 4, md: 6, lg: 10 }}>
+                <Container maxW={containerMaxW} px={{ base: 4, md: 6 }}>
+                    <MotionBox
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
                     >
-                        <Box
-                            bg="linear-gradient(135deg, #e53e3e 0%, #c53030 50%, #9b2c2c 100%)"
-                            height={{ base: "80px", md: "120px" }}
-                            position="relative"
+                        {/* Header Card */}
+                        <MotionCard
+                            bg={cardBg}
+                            borderRadius="2xl"
+                            overflow="hidden"
+                            boxShadow="0 25px 50px rgba(0,0,0,0.1)"
+                            mb={{ base: 6, md: 8 }}
+                            onHoverStart={() => setIsHovered(true)}
+                            onHoverEnd={() => setIsHovered(false)}
                         >
-                            <MotionBox
-                                position="absolute"
-                                top="-10px"
-                                right="-10px"
-                                width={{ base: "60px", md: "100px" }}
-                                height={{ base: "60px", md: "100px" }}
-                                borderRadius="50%"
-                                bg="rgba(255,255,255,0.1)"
-                                animate={{
-                                    scale: isHovered ? 1.2 : 1,
-                                    rotate: isHovered ? 180 : 0
-                                }}
-                                transition={{ duration: 0.5 }}
-                            />
-                        </Box>
-
-                        <CardBody position="relative" pt={0} p={cardPadding}>
-                            <Stack direction={headerDirection} spacing={headerSpacing} align={{ base: 'center', md: 'start' }}>
-                                <MotionBox
-                                    mt={{ base: -12, md: -16 }}
-                                    whileHover={{ scale: 1.05 }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <Avatar
-                                        size={avatarSize}
-                                        src={person.avatar}
-                                        border="6px solid white"
-                                        boxShadow="0 10px 30px rgba(0,0,0,0.2)"
-                                    />
-                                </MotionBox>
-
-                                <VStack
-                                    align={{ base: 'center', md: 'start' }}
-                                    spacing={2}
-                                    flex={1}
-                                    pt={{ base: 2, md: 4 }}
-                                    textAlign={{ base: 'center', md: 'left' }}
-                                >
-                                    <Heading size={headingSize} color={textColor}>
-                                        {person.name}
-                                    </Heading>
-                                    <Text fontSize={roleSize} color="red.500" fontWeight="semibold">
-                                        {person.role}
-                                    </Text>
-                                    <Stack
-                                        direction={{ base: 'column', sm: 'row' }}
-                                        spacing={4}
-                                        color={mutedColor}
-                                        align="center"
-                                    >
-                                        <HStack spacing={1}>
-                                            <Icon as={FaMapMarkerAlt} />
-                                            <Text fontSize="sm">{person.location}</Text>
-                                        </HStack>
-                                        <HStack spacing={1}>
-                                            <Icon as={FaStar} color="yellow.400" />
-                                            <Text fontSize="sm">4.9/5</Text>
-                                        </HStack>
-                                    </Stack>
-                                </VStack>
-                            </Stack>
-                        </CardBody>
-                    </MotionCard>
-
-                    {/* Navigation Tabs */}
-                    <Stack direction={tabsDirection} spacing={tabsSpacing} mb={{ base: 6, md: 8 }} align="center">
-                        {tabs.map((tab) => (
-                            <Button
-                                key={tab.id}
-                                variant={activeTab === tab.id ? "solid" : "ghost"}
-                                colorScheme="red"
-                                leftIcon={<Icon as={tab.icon} />}
-                                onClick={() => setActiveTab(tab.id)}
-                                borderRadius="full"
-                                px={{ base: 3, md: 6 }}
-                                size={buttonSize}
-                                transform={activeTab === tab.id ? "scale(1.05)" : "scale(1)"}
-                                transition="all 0.3s ease"
-                                width={{ base: 'full', sm: 'auto' }}
+                            <Box
+                                bg="linear-gradient(135deg, #e53e3e 0%, #c53030 50%, #9b2c2c 100%)"
+                                height={{ base: "80px", md: "120px" }}
+                                position="relative"
                             >
-                                {tab.label}
-                            </Button>
-                        ))}
-                    </Stack>
+                                <MotionBox
+                                    position="absolute"
+                                    top="-10px"
+                                    right="-10px"
+                                    width={{ base: "60px", md: "100px" }}
+                                    height={{ base: "60px", md: "100px" }}
+                                    borderRadius="50%"
+                                    bg="rgba(255,255,255,0.1)"
+                                    animate={{
+                                        scale: isHovered ? 1.2 : 1,
+                                        rotate: isHovered ? 180 : 0
+                                    }}
+                                    transition={{ duration: 0.5 }}
+                                />
+                            </Box>
 
-                    {/* Content Area */}
-                    <MotionCard
-                        bg={cardBg}
-                        borderRadius="2xl"
-                        boxShadow="0 25px 50px rgba(0,0,0,0.1)"
-                        overflow="hidden"
-                    >
-                        <CardBody p={cardPadding}>
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={activeTab}
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -20 }}
-                                    transition={{ duration: 0.3 }}
+                            <CardBody position="relative" pt={0} p={cardPadding}>
+                                <Stack direction={headerDirection} spacing={headerSpacing} align={{ base: 'center', md: 'start' }}>
+                                    <MotionBox
+                                        mt={{ base: -12, md: -16 }}
+                                        whileHover={{ scale: 1.05 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <Avatar
+                                            size={avatarSize}
+                                            src={person.avatar}
+                                            border="6px solid white"
+                                            boxShadow="0 10px 30px rgba(0,0,0,0.2)"
+                                        />
+                                    </MotionBox>
+
+                                    <VStack
+                                        align={{ base: 'center', md: 'start' }}
+                                        spacing={2}
+                                        flex={1}
+                                        pt={{ base: 2, md: 4 }}
+                                        textAlign={{ base: 'center', md: 'left' }}
+                                    >
+                                        <Heading size={headingSize} color={textColor}>
+                                            {person.name}
+                                        </Heading>
+                                        <Text fontSize={roleSize} color="red.500" fontWeight="semibold">
+                                            {person.role}
+                                        </Text>
+                                        <Stack
+                                            direction={{ base: 'column', sm: 'row' }}
+                                            spacing={4}
+                                            color={mutedColor}
+                                            align="center"
+                                        >
+                                            <HStack spacing={1}>
+                                                <Icon as={FaMapMarkerAlt} />
+                                                <Text fontSize="sm">{person.location}</Text>
+                                            </HStack>
+                                            <HStack spacing={1}>
+                                                <Icon as={FaStar} color="yellow.400" />
+                                                <Text fontSize="sm">4.9/5</Text>
+                                            </HStack>
+                                        </Stack>
+                                    </VStack>
+                                </Stack>
+                            </CardBody>
+                        </MotionCard>
+
+                        {/* Navigation Tabs */}
+                        <Stack direction={tabsDirection} spacing={tabsSpacing} mb={{ base: 6, md: 8 }} align="center">
+                            {tabs.map((tab) => (
+                                <Button
+                                    key={tab.id}
+                                    variant={activeTab === tab.id ? "solid" : "ghost"}
+                                    colorScheme="red"
+                                    leftIcon={<Icon as={tab.icon} />}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    borderRadius="full"
+                                    px={{ base: 3, md: 6 }}
+                                    size={buttonSize}
+                                    transform={activeTab === tab.id ? "scale(1.05)" : "scale(1)"}
+                                    transition="all 0.3s ease"
+                                    width={{ base: 'full', sm: 'auto' }}
                                 >
-                                    {renderTabContent()}
-                                </motion.div>
-                            </AnimatePresence>
-                        </CardBody>
-                    </MotionCard>
-                </MotionBox>
-            </Container>
-        </Box>
+                                    {tab.label}
+                                </Button>
+                            ))}
+                        </Stack>
+
+                        {/* Content Area */}
+                        <MotionCard
+                            bg={cardBg}
+                            borderRadius="2xl"
+                            boxShadow="0 25px 50px rgba(0,0,0,0.1)"
+                            overflow="hidden"
+                        >
+                            <CardBody p={cardPadding}>
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={activeTab}
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        {renderTabContent()}
+                                    </motion.div>
+                                </AnimatePresence>
+                            </CardBody>
+                        </MotionCard>
+                    </MotionBox>
+                </Container>
+            </Box>
+
+            <ModalAchiev
+                isOpen={isOpen}
+                onClose={onClose}
+                achievement={selectedAchievement}
+            />
+        </>
     );
 };
 

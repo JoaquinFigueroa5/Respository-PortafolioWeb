@@ -274,6 +274,7 @@ const ProjectsShowcase = ({proyectRef}) => {
                         maxW="2xl"
                     >
                         Explora una colección de proyectos que demuestran mis habilidades en desarrollo web y diseño de interfaces.
+                        (Solo se muestran proyectos bastante completos e interesantes)
                     </Text>
                 </MotionBox>
 
