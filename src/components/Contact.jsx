@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Box,
     Container,
@@ -18,6 +18,7 @@ import {
     Grid,
     GridItem,
     Textarea,
+    useToast
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import {
@@ -31,12 +32,19 @@ import {
     FaArrowUp,
     FaPaperPlane
 } from 'react-icons/fa';
+import emailjs from 'emailjs-com';
 
 const MotionBox = motion(Box);
 const MotionButton = motion(Button);
 const MotionIconButton = motion(IconButton);
 
-const Contact = ({contactRef}) => {
+const Contact = ({ contactRef }) => {
+    const [email, setEmail] = useState('');
+    const [mensaje, setMensaje] = useState('');
+    const [esValido, setEsValido] = useState(false);
+
+    const toast = useToast();
+
     const bgGradient = useColorModeValue(
         'linear(to-r, gray.900, red.900, gray.900)',
         'linear(to-r, gray.900, red.900, gray.900)'
@@ -52,6 +60,83 @@ const Contact = ({contactRef}) => {
         { icon: FaTwitter, href: '#', label: 'Twitter' },
         { icon: FaInstagram, href: '#', label: 'Instagram' },
     ];
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+    const handleChange = (e) => {
+        e.stopPropagation();
+        setEmail(e.target.value);
+        setEsValido(emailRegex.test(e.target.value));
+    }
+
+    const handleSendEmail = async (e) => {
+        e.preventDefault();
+
+        try {
+            const result = await emailjs.send(
+                'service_owzped8',
+                'template_kerehsq',
+                {
+                    from_email: email,
+                    msj: mensaje
+                },
+                'YRVspwU1uynrfK0kw'
+            );
+
+            toast({
+                title: 'El email se envió correctamente',
+                status: 'success',
+                duration: 4000,
+                isClosable: true,
+                position: 'top-right',
+                containerStyle: {
+                    background: 'linear-gradient(135deg, #F0FFF4 0%, #C6F6D5 100%)',
+                    color: '#22543D',
+                    border: '1px solid rgba(56, 161, 105, 0.3)',
+                    padding: '16px 20px',
+                    borderRadius: '12px',
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    boxShadow: '0 8px 32px rgba(56, 161, 105, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08)',
+                    backdropFilter: 'blur(8px)',
+                    borderLeft: '4px solid #38A169',
+                    maxWidth: '400px',
+                    minWidth: '300px'
+                }
+            });
+
+            setEmail('');
+            setMensaje('');
+
+        } catch (error) {
+            toast.error('Hubo un error al enviar el correo.', {
+                style: {
+                    background: 'linear-gradient(135deg, #FFF5F5 0%, #FED7D7 100%)',
+                    color: '#742A2A',
+                    border: '1px solid rgba(229, 62, 62, 0.3)',
+                    padding: '16px 20px',
+                    borderRadius: '12px',
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif',
+                    boxShadow: '0 8px 32px rgba(229, 62, 62, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08)',
+                    backdropFilter: 'blur(8px)',
+                    borderLeft: '4px solid #E53E3E',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    maxWidth: '400px',
+                    minWidth: '300px'
+                },
+                iconTheme: {
+                    primary: '#E53E3E',
+                    secondary: '#FFFFFF',
+                },
+                duration: 4000,
+                position: 'bottom-right',
+            });
+        }
+    }
+
 
     const quickLinks = [
         { name: 'Inicio', href: '#' },
@@ -196,6 +281,17 @@ const Contact = ({contactRef}) => {
                                     Si quieres enviarme un correo directamente puedes hacerlo aqui.
                                 </Text>
                                 <VStack w="full" spacing={3}>
+                                    <Input
+                                        placeholder="Tu correo aqui..."
+                                        bg={cardBg}
+                                        border="1px"
+                                        borderColor="whiteAlpha.300"
+                                        _hover={{ borderColor: accentColor }}
+                                        _focus={{ borderColor: accentColor, boxShadow: `0 0 0 1px ${accentColor}` }}
+                                        type='email'
+                                        value={email}
+                                        onChange={handleChange}
+                                    />
                                     <Textarea
                                         placeholder="Tu mensaje aquí..."
                                         bg={cardBg}
@@ -203,6 +299,8 @@ const Contact = ({contactRef}) => {
                                         borderColor="whiteAlpha.300"
                                         _hover={{ borderColor: accentColor }}
                                         _focus={{ borderColor: accentColor, boxShadow: `0 0 0 1px ${accentColor}` }}
+                                        value={mensaje}
+                                        onChange={(e) => setMensaje(e.target.value)}
                                     />
                                     <MotionButton
                                         w="full"
@@ -212,6 +310,8 @@ const Contact = ({contactRef}) => {
                                         leftIcon={<FaPaperPlane />}
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
+                                        isDisabled={!esValido}
+                                        onClick={handleSendEmail}
                                     >
                                         Enviar
                                     </MotionButton>
@@ -254,5 +354,4 @@ const Contact = ({contactRef}) => {
         </MotionBox>
     );
 };
-
 export default Contact;
