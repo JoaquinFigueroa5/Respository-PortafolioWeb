@@ -13,6 +13,7 @@ import {
     HStack,
     VStack,
     Badge,
+    Tooltip,
     useColorModeValue
 } from '@chakra-ui/react';
 import { ChevronLeft, ChevronRight, ExternalLink, Github } from 'lucide-react';
@@ -50,16 +51,16 @@ const projectsData = [
     },
     {
         id: 3,
-        title: "Blog",
-        description: "Proyecto de un blog donde en los cursos correspondientes hay publicaciones y se pueden comentar sobre las publicaciones.",
-        technologies: ["React.js", "MongoDB", "Express.js", "Node.js", "Chakra-UI"],
+        title: "CED Virtual",
+        description: "Parte del desarrollo del sitio web de la institucion educativa CED Virtual que se centra en la carrera de bachillerato por madurez.",
+        technologies: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
         images: [
-            "/Blog/dashboard.png",
-            "/Blog/Publications.png",
-            "/Blog/Comentarios.png",
+            "/CED/dashboard.png",
+            "/CED/Publications.png",
+            "/CED/Comentarios.png",
         ],
         github: 'https://github.com/JoaquinFigueroa5/Repository-BlogFrontend.git',
-        deploy: 'No disponible'
+        deploy: 'https://cedvirtual.umg.edu.gt/'
     },
     {
         id: 4,
@@ -192,7 +193,7 @@ const ProjectCard = ({ project }) => {
                         {project.title}
                     </Heading>
 
-                    <Text fontSize="sm" color="gray.600" noOfLines={3}>
+                    <Text fontSize="sm" color="whiteAlpha.900" noOfLines={3}>
                         {project.description}
                     </Text>
 
@@ -223,19 +224,36 @@ const ProjectCard = ({ project }) => {
                         flex={1}
                         href={project.deploy}
                     >
-                        Ver Demo
+                        Probar gratis
                     </Button>
-                    <Button
-                        as='a'
-                        leftIcon={<Github size={16} />}
-                        colorScheme="red"
-                        variant="outline"
-                        size="sm"
-                        flex={1}
-                        href={project.github}
-                    >
-                        Código
-                    </Button>
+                    {project.id === 3 ? (
+                        <Tooltip label="Repositorio privado por razones laborales" fontSize="sm">
+                            <Button
+                                as='a'
+                                leftIcon={<Github size={16} />}
+                                colorScheme="red"
+                                variant="outline"
+                                size="sm"
+                                flex={1}
+                                href={project.github}
+                                disabled={true}
+                            >
+                                Código
+                            </Button>
+                        </Tooltip>
+                    ) : (
+                        <Button
+                            as='a'
+                            leftIcon={<Github size={16} />}
+                            colorScheme="red"
+                            variant="outline"
+                            size="sm"
+                            flex={1}
+                            href={project.github}
+                        >
+                            Código
+                        </Button>
+                    )}
                 </HStack>
             </CardFooter>
         </MotionCard>
@@ -243,7 +261,7 @@ const ProjectCard = ({ project }) => {
 };
 
 
-const ProjectsShowcase = ({proyectRef}) => {
+const ProjectsShowcase = ({ proyectRef }) => {
     return (
         <Box
             minH="100vh"
