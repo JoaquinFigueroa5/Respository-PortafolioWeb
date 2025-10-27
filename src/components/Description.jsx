@@ -3,9 +3,9 @@ import { Box, Text, VStack, HStack, Button, Container, Heading, Badge, Flex } fr
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import AboutMe from './AboutMe';
 
-const MotionBox = motion(Box);
-const MotionText = motion(Text);
-const MotionHeading = motion(Heading);
+const MotionBox = motion.create(Box);
+const MotionText = motion.create(Text);
+const MotionHeading = motion.create(Heading);
 
 const Description = ({ refAbout, heroRef }) => {
     const [windowHeight, setWindowHeight] = useState(0);

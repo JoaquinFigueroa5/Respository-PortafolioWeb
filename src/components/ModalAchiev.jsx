@@ -22,8 +22,8 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaCheckCircle, FaStar } from 'react-icons/fa';
 
-const MotionBox = motion(Box);
-const MotionFlex = motion(Flex);
+const MotionBox = motion.create(Box);
+const MotionFlex = motion.create(Flex);
 
 const ModalAchiev = ({ isOpen, onClose, achievement }) => {
     const bgColor = useColorModeValue('white', 'gray.800');

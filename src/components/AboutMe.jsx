@@ -52,9 +52,9 @@ import { GrMysql as SiMysql } from "react-icons/gr";
 import { SiMongodb, SiChakraui, SiFirebase, SiRender } from "react-icons/si";
 import ModalAchiev from './ModalAchiev';
 
-const MotionBox = motion(Box);
-const MotionCard = motion(Card);
-const MotionBadge = motion(Badge);
+const MotionBox = motion.create(Box);
+const MotionCard = motion.create(Card);
+const MotionBadge = motion.create(Badge);
 
 const AboutMe = () => {
     const [activeTab, setActiveTab] = useState('about');
@@ -198,7 +198,7 @@ const AboutMe = () => {
                                 </Heading>
                                 <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
                                     {person.achievements.map((achievement, index) => (
-                                        <Tooltip label='Click para ver más' >
+                                        <Tooltip label='Click para ver más' key={index} >
                                             <MotionCard
                                                 key={index}
                                                 bg={cardBg}
@@ -340,8 +340,8 @@ const AboutMe = () => {
                                         border="1px solid"
                                         borderColor="gray.200"
                                         whileHover={{
-                                            borderColor: "red.300",
-                                            transform: { base: "translateY(-2px)", md: "translateX(10px)" }
+                                            borderColor: "#FC8181",
+                                            transform: "translateX(10px)"
                                         }}
                                         transition={{ duration: 0.3 }}
                                     >

@@ -19,8 +19,8 @@ import {
 import { ChevronLeft, ChevronRight, ExternalLink, Github } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const MotionBox = motion(Box);
-const MotionCard = motion(Card);
+const MotionBox = motion.create(Box);
+const MotionCard = motion.create(Card);
 
 const projectsData = [
     {
@@ -182,7 +182,7 @@ const ProjectCard = ({ project }) => {
             shadow="lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -5, shadow: "xl", transition: { duration: 0.2 } }}
+            whileHover={{ y: -5, transition: { duration: 0.2 } }}
             transition={{ duration: 0.3 }}
         >
             <ImageCarousel images={project.images} projectId={project.id} />

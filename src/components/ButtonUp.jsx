@@ -8,8 +8,8 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowUp, FaRocket } from 'react-icons/fa';
 
-const MotionIconButton = motion(IconButton);
-const MotionBox = motion(Box);
+const MotionIconButton = motion.create(IconButton);
+const MotionBox = motion.create(Box);
 
 const ScrollToTopButton = () => {
     const [isVisible, setIsVisible] = useState(false);

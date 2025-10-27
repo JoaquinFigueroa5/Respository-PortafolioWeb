@@ -40,10 +40,10 @@ import ProjectsShowcase from './components/Proyects';
 import Contact from './components/Contact';
 import ScrollToTopButton from './components/ButtonUp';
 
-const MotionBox = motion(Box);
-const MotionFlex = motion(Flex);
-const MotionButton = motion(Button);
-const MotionIconButton = motion(IconButton);
+const MotionBox = motion.create(Box);
+const MotionFlex = motion.create(Flex);
+const MotionButton = motion.create(Button);
+const MotionIconButton = motion.create(IconButton);
 
 const App = () => {
   const [scrolled, setScrolled] = useState(false);

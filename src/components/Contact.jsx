@@ -34,9 +34,9 @@ import {
 } from 'react-icons/fa';
 import emailjs from 'emailjs-com';
 
-const MotionBox = motion(Box);
-const MotionButton = motion(Button);
-const MotionIconButton = motion(IconButton);
+const MotionBox = motion.create(Box);
+const MotionButton = motion.create(Button);
+const MotionIconButton = motion.create(IconButton);
 
 const Contact = ({ contactRef }) => {
     const [email, setEmail] = useState('');
