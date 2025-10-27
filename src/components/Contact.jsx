@@ -329,6 +329,8 @@ const Contact = ({ contactRef }) => {
                     <HStack justify="space-between" align="center" flexWrap="wrap">
                         <Text fontSize="sm" opacity={0.8}>
                             © 2025 Herbert Joaquin Figueroa Alvarez. Todos los derechos reservados.
+                            <br />
+                            UI/UX Hecha con React, Chakra UI y framer-motion.
                         </Text>
                         <HStack spacing={4}>
                             <Link href="#" fontSize="sm" _hover={{ color: accentColor }}>

@@ -42,9 +42,9 @@ const Description = ({ refAbout, heroRef }) => {
                     right="0"
                     bottom="0"
                     bg="linear-gradient(45deg, #e53e3e 0%, #c53030 25%, #9b2c2c 50%, #742a2a 75%, #1a202c 100%)"
-                    opacity="0.8"
+                    opacity="0.1"
                     transform="scale(1.2)"
-                    bgImg={'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIckAWo05yz4r56LnNAeVqAJAmLBEDd3SMRNhlcE6RmD4bbWkLqLPJbr5VpBOnFXriD7SvJIz30nJafAuIfW3zw6JrOP6RAGxEpV0VEIm-wjbG4ljlvF5-ioVKNfvQwrL8qSXe7BMhqHC8/w1200-h630-p-k-no-nu/phpCode.pnghttps://www.hostingplus.lat/wp-content/uploads/2021/11/editor_codigo.jpg'}
+                    bgImg={'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1169'}
                 />
 
                 {/* Elementos decorativos animados - responsive */}
@@ -76,7 +76,6 @@ const Description = ({ refAbout, heroRef }) => {
                     height={{ base: "100px", md: "150px" }}
                     borderRadius="20px"
                     bg="rgba(197, 48, 48, 0.3)"
-                    style={{ y: foregroundY, rotate: rotation }}
                     animate={{
                         y: [-10, 10, -10],
                         rotate: [0, 180, 360]
