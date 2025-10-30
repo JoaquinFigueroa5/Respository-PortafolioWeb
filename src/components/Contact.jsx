@@ -57,8 +57,7 @@ const Contact = ({ contactRef }) => {
     const socialLinks = [
         { icon: FaGithub, href: 'https://github.com/JoaquinFigueroa5', label: 'GitHub' },
         { icon: FaLinkedin, href: 'https://www.linkedin.com/in/joaquin-figueroa-284292346/', label: 'LinkedIn' },
-        { icon: FaTwitter, href: '#', label: 'Twitter' },
-        { icon: FaInstagram, href: '#', label: 'Instagram' },
+        { icon: FaInstagram, href: 'https://www.instagram.com/jk.i.fg/', label: 'Instagram' },
     ];
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
@@ -165,10 +164,6 @@ const Contact = ({ contactRef }) => {
             y: 0,
             transition: { duration: 0.4 }
         }
-    };
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     return (
@@ -332,24 +327,6 @@ const Contact = ({ contactRef }) => {
                             <br />
                             UI/UX Hecha con React, Chakra UI y framer-motion.
                         </Text>
-                        <HStack spacing={4}>
-                            <Link href="#" fontSize="sm" _hover={{ color: accentColor }}>
-                                Privacidad
-                            </Link>
-                            <Link href="#" fontSize="sm" _hover={{ color: accentColor }}>
-                                Términos
-                            </Link>
-                            <MotionIconButton
-                                aria-label="Ir arriba"
-                                icon={<FaArrowUp />}
-                                variant="ghost"
-                                color={textColor}
-                                _hover={{ color: accentColor }}
-                                onClick={scrollToTop}
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.95 }}
-                            />
-                        </HStack>
                     </HStack>
                 </MotionBox>
             </Container>
