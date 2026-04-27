@@ -1,9 +1,5 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP, gsap } from "../lib/gsap";
 import { useRef, useState } from "react";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 function ContactSection() {
   const sectionRef = useRef(null);

@@ -1,9 +1,5 @@
-import { useGSAP } from "@gsap/react";
+import { useGSAP, gsap } from "../lib/gsap";
 import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 function ProjectCard({ p, index }) {
   const cardRef = useRef(null);

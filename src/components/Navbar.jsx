@@ -1,5 +1,4 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
+import { useGSAP, gsap } from "../lib/gsap";
 import { useEffect, useRef, useState } from "react";
 import { NAV_LINKS } from "../data/NavbarData";
 

@@ -1,6 +1,4 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { useGSAP, gsap, ScrollTrigger } from "../lib/gsap";
 import { useRef } from "react";
 import SkillBar from "./Skillbar";
 import { SKILLS } from "../data/SkillsData";

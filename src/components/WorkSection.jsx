@@ -1,11 +1,7 @@
 import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP, gsap } from "../lib/gsap";
 import { PROJECTS } from "../data/ProjectsData";
 import ProjectCard from "./ProjectCard";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 function WorkSection() {
   const sectionRef = useRef(null);

@@ -1,5 +1,4 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
+import { useGSAP, gsap } from "../lib/gsap";
 import { useRef } from "react";
 
 function Hero() {

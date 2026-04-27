@@ -1,5 +1,5 @@
-import gsap from "gsap";
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { gsap } from "../lib/gsap";
 
 function Cursor() {
   const ringRef = useRef(null);

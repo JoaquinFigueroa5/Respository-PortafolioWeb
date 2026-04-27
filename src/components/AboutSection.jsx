@@ -1,5 +1,4 @@
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import { useGSAP, gsap } from "../lib/gsap";
 import { useRef } from "react";
 
 function AboutSection() {
