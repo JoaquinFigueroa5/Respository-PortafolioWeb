@@ -59,7 +59,7 @@ const projectsData = [
             "/CED/Publications.png",
             "/CED/Comentarios.png",
         ],
-        github: 'https://github.com/JoaquinFigueroa5/Repository-BlogFrontend.git',
+        github: '',
         deploy: 'https://cedvirtual.umg.edu.gt/'
     },
     {
@@ -235,7 +235,6 @@ const ProjectCard = ({ project }) => {
                                 variant="outline"
                                 size="sm"
                                 flex={1}
-                                href={project.github}
                                 disabled={true}
                             >
                                 Código
