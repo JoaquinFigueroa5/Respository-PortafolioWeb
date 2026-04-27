@@ -17,10 +17,15 @@ import {
     useColorModeValue,
     Flex,
     Tag,
-    TagLabel
+    TagLabel,
+    Image,
+    AspectRatio
 } from '@chakra-ui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaCheckCircle, FaStar } from 'react-icons/fa';
+import certificadoReact from '/Logros/Certificado_React.png';
+import spaceApps from '/Logros/SpaceApps.jpg';
+import telescope from '/Logros/Telescope.jpg';
 
 const MotionBox = motion.create(Box);
 const MotionFlex = motion.create(Flex);
@@ -39,7 +44,8 @@ const ModalAchiev = ({ isOpen, onClose, achievement }) => {
         "Diploma por haber participado en SpaceApps de la NASA.": {
             description: "Participé en el evento SpaceApps Challenge organizado por la NASA, donde tuve la oportunidad de trabajar en proyectos innovadores relacionados con la exploración espacial y tecnología.",
             skills: ["Trabajo en equipo", "Resolución de problemas", "Innovación tecnológica"],
-            impact: "Esta experiencia me permitió desarrollar habilidades de colaboración y pensamiento creativo en un ambiente de competencia internacional."
+            impact: "Esta experiencia me permitió desarrollar habilidades de colaboración y pensamiento creativo en un ambiente de competencia internacional.",
+            image: spaceApps
         },
         "Parte de desarrollo web en la universidad Mariano Galvez.": {
             description: "Tuve la oportunidad de ser parte del equipo de desarrollo web en la Universidad Mariano Gálvez, contribuyendo a proyectos académicos y fortaleciendo mis conocimientos en tecnologías web modernas.",
@@ -49,7 +55,8 @@ const ModalAchiev = ({ isOpen, onClose, achievement }) => {
         "Certificación en React por ADA-SCHOOL.": {
             description: "Completé exitosamente el programa de certificación en React de ADA-SCHOOL, dominando conceptos avanzados de esta popular biblioteca de JavaScript.",
             skills: ["React", "Hooks", "State Management", "Component Design"],
-            impact: "Esta certificación consolidó mis habilidades en desarrollo frontend moderno y me preparó para crear aplicaciones web escalables y eficientes."
+            impact: "Esta certificación consolidó mis habilidades en desarrollo frontend moderno y me preparó para crear aplicaciones web escalables y eficientes.",
+            image: certificadoReact
         },
         "Elegido para la ExpoKinal por buen rendimiento tecnico.": {
             description: "Fui seleccionado para representar a mi institución en la ExpoKinal debido a mi excelente rendimiento técnico y dedicación en proyectos de desarrollo.",
@@ -59,7 +66,8 @@ const ModalAchiev = ({ isOpen, onClose, achievement }) => {
         "Diploma por haber participado en Telescope de la UNIS.": {
             description: "Participé en el evento Telescope organizado por la Universidad del Istmo (UNIS), un espacio de innovación y emprendimiento tecnológico.",
             skills: ["Emprendimiento", "Tecnología", "Networking"],
-            impact: "Esta experiencia me expuso a las últimas tendencias en tecnología y me conectó con profesionales del sector."
+            impact: "Esta experiencia me expuso a las últimas tendencias en tecnología y me conectó con profesionales del sector.",
+            image: telescope
         },
         "Graduado de Kinal con un Tecnico en informatica (Programador Junior).": {
             description: "Me gradué exitosamente del Centro Educativo Técnico Laboral KINAL con el título de Técnico en Informática, especializado como Programador Junior.",
@@ -136,6 +144,19 @@ const ModalAchiev = ({ isOpen, onClose, achievement }) => {
             scale: 1.1,
             rotate: 5,
             transition: { duration: 0.3 }
+        }
+    };
+
+    const imageVariants = {
+        hidden: { opacity: 0, scale: 0.9 },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                type: "spring",
+                stiffness: 200,
+                damping: 20
+            }
         }
     };
 
@@ -258,6 +279,56 @@ const ModalAchiev = ({ isOpen, onClose, achievement }) => {
 
                         <ModalBody py={6} px={6}>
                             <VStack align="stretch" spacing={6}>
+                                {/* Imagen del logro (solo si existe) */}
+                                {details.image && (
+                                    <MotionBox
+                                        variants={imageVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                    >
+                                        <AspectRatio ratio={16 / 9} maxW="100%">
+                                            <Box
+                                                borderRadius="xl"
+                                                overflow="hidden"
+                                                boxShadow="lg"
+                                                border="2px solid"
+                                                borderColor={borderColor}
+                                                position="relative"
+                                            >
+                                                <Image
+                                                    src={details.image}
+                                                    alt={achievement.title}
+                                                    objectFit="cover"
+                                                    w="100%"
+                                                    h="100%"
+                                                    fallback={
+                                                        <Flex
+                                                            w="100%"
+                                                            h="100%"
+                                                            bg={cardBg}
+                                                            align="center"
+                                                            justify="center"
+                                                        >
+                                                            <Text color={mutedColor}>
+                                                                Cargando imagen...
+                                                            </Text>
+                                                        </Flex>
+                                                    }
+                                                />
+                                                {/* Overlay decorativo */}
+                                                <Box
+                                                    position="absolute"
+                                                    bottom={0}
+                                                    left={0}
+                                                    right={0}
+                                                    h="30%"
+                                                    bgGradient="linear(to-t, blackAlpha.600, transparent)"
+                                                />
+                                            </Box>
+                                        </AspectRatio>
+                                    </MotionBox>
+                                )}
+
                                 {/* Descripción */}
                                 <MotionBox variants={itemVariants}>
                                     <VStack align="stretch" spacing={3}>

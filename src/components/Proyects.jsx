@@ -229,7 +229,6 @@ const ProjectCard = ({ project }) => {
                     {project.id === 3 ? (
                         <Tooltip label="Repositorio privado por razones laborales" fontSize="sm">
                             <Button
-                                as='a'
                                 leftIcon={<Github size={16} />}
                                 colorScheme="red"
                                 variant="outline"
