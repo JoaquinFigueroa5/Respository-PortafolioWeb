@@ -1,8 +1,8 @@
-import { useGSAP, gsap, ScrollTrigger } from "../lib/gsap";
+import { useGSAP, gsap, ScrollTrigger } from "@/lib/gsap";
 import { useRef } from "react";
-import SkillBar from "./Skillbar";
-import { SKILLS } from "../data/SkillsData";
-import { TOOLS } from "../data/ToolsData";
+import SkillBar from "@/components/Skillbar";
+import { SKILLS } from "@/data/SkillsData";
+import { TOOLS } from "@/data/ToolsData";
 
 function SkillsSection() {
   const sectionRef = useRef(null);
@@ -16,6 +16,22 @@ function SkillsSection() {
         duration: 0.9,
         ease: "power3.out",
         scrollTrigger: { trigger: ".sk-hdr", start: "top 82%" },
+      });
+      gsap.from(".skill-row", {
+        autoAlpha: 0,
+        x: -28,
+        stagger: 0.07,
+        duration: 0.6,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".skill-row", start: "top 88%" },
+      });
+      gsap.from(".skill-fill", {
+        scaleX: 0,
+        transformOrigin: "left center",
+        stagger: 0.07,
+        duration: 1.15,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".skill-row", start: "top 88%" },
       });
       ScrollTrigger.batch(".tool-pill", {
         onEnter: (els) =>
@@ -61,8 +77,8 @@ function SkillsSection() {
             </h2>
           </div>
           <div className="flex flex-col gap-5">
-            {SKILLS.map((s, i) => (
-              <SkillBar key={s.label} {...s} index={i} />
+            {SKILLS.map((s) => (
+              <SkillBar key={s.label} {...s} />
             ))}
           </div>
         </div>

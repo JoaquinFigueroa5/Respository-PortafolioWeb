@@ -1,4 +1,4 @@
-import { useGSAP, gsap } from "../lib/gsap";
+import { useGSAP, gsap } from "@/lib/gsap";
 import { useRef } from "react";
 
 function Hero() {
@@ -26,9 +26,9 @@ function Hero() {
         style={{ backgroundImage: "linear-gradient(rgba(52,211,153,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,.03) 1px,transparent 1px)", backgroundSize: "44px 44px" }} />
 
       {/* ambient glows */}
-      <div className="glow-a absolute top-1/4 right-1/4 w-96 h-96 rounded-full pointer-events-none"
+      <div className="glow-a absolute top-1/4 right-1/4 w-96 h-96 rounded-full pointer-events-none will-change-transform"
         style={{ background: "radial-gradient(circle, rgba(52,211,153,0.07) 0%, transparent 70%)" }} />
-      <div className="glow-b absolute bottom-1/4 left-1/6 w-80 h-80 rounded-full pointer-events-none"
+      <div className="glow-b absolute bottom-1/4 left-1/6 w-80 h-80 rounded-full pointer-events-none will-change-transform"
         style={{ background: "radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)" }} />
 
       <div className="relative max-w-5xl">

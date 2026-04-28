@@ -1,4 +1,4 @@
-import { useGSAP, gsap } from "../lib/gsap";
+import { useGSAP, gsap } from "@/lib/gsap";
 import { useRef } from "react";
 
 function AboutSection() {
@@ -87,7 +87,7 @@ function AboutSection() {
                   👨‍💻
                 </div>
                 <p className="font-mono text-xs text-white/25 tracking-widest">
-                  ALEJANDRO REYES
+                  JOAQUÍN FIGUEROA
                 </p>
               </div>
             </div>

@@ -27,3 +27,7 @@ html {
   background: rgba(52, 211, 153, 0.35);
   border-radius: 9999px;
 }
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+}

@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import { useGSAP, gsap } from "../lib/gsap";
-import { PROJECTS } from "../data/ProjectsData";
-import ProjectCard from "./ProjectCard";
+import { useGSAP, gsap } from "@/lib/gsap";
+import { PROJECTS } from "@/data/ProjectsData";
+import ProjectCard from "@/components/ProjectCard";
 
 function WorkSection() {
   const sectionRef = useRef(null);

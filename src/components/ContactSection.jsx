@@ -1,4 +1,4 @@
-import { useGSAP, gsap } from "../lib/gsap";
+import { useGSAP, gsap } from "@/lib/gsap";
 import { useRef, useState } from "react";
 
 function ContactSection() {
@@ -81,7 +81,7 @@ function ContactSection() {
             <span className="text-emerald-400">{"/>"}</span>
           </span>
           <p className="font-mono text-xs tracking-widest text-white/20">
-            © 2024 Alejandro Reyes · Crafted with care
+            © {new Date().getFullYear()} Joaquín Figueroa · Crafted with care
           </p>
           <div className="flex gap-5">
             {["GitHub", "LinkedIn", "Twitter"].map((s) => (

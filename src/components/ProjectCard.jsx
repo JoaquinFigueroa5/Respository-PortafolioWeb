@@ -1,4 +1,4 @@
-import { useGSAP, gsap } from "../lib/gsap";
+import { useGSAP, gsap } from "@/lib/gsap";
 import { useRef } from "react";
 
 function ProjectCard({ p, index }) {

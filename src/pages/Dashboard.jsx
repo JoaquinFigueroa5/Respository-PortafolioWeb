@@ -1,13 +1,13 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import Cursor from "../components/Cursor";
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import WorkSection from "../components/WorkSection";
-import SkillsSection from "../components/SkillsSection";
-import AboutSection from "../components/AboutSection";
-import ContactSection from "../components/ContactSection";
+import Cursor from "@/components/Cursor";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import WorkSection from "@/components/WorkSection";
+import SkillsSection from "@/components/SkillsSection";
+import AboutSection from "@/components/AboutSection";
+import ContactSection from "@/components/ContactSection";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
