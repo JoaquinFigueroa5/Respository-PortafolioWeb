@@ -83,12 +83,12 @@ function Cursor() {
     <>
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 w-10 h-10 rounded-full border pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference will-change-transform"
+        className="fixed top-0 left-0 w-10 h-10 rounded-full border pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2 mix-blend-difference will-change-transform"
         style={{ borderColor: "rgba(255,255,255,0.35)" }}
       />
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-emerald-400 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 will-change-transform"
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-emerald-400 pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2 will-change-transform"
       />
     </>
   );

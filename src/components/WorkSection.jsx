@@ -26,25 +26,24 @@ function WorkSection() {
         <div className="wk-hdr flex justify-between items-end mb-16 flex-wrap gap-4">
           <div>
             <p className="font-mono text-xs tracking-[0.2em] uppercase text-emerald-400 mb-3">
-              Selected Work
+              Si lo imaginas, lo puedes programar - Alejandro Taboada
             </p>
             <h2
               className="font-syne font-black leading-none tracking-tight text-white"
               style={{ fontSize: "clamp(2.4rem,5vw,3.8rem)" }}
             >
-              Projects that
+              Proyectos que
               <br />
               <span
                 className="text-transparent"
                 style={{ WebkitTextStroke: "1px rgba(255,255,255,0.22)" }}
               >
-                matter.
+                transforman.
               </span>
             </h2>
           </div>
           <p className="font-sans text-sm text-white/38 max-w-xs leading-relaxed">
-            Each project is a story of problem-solving, craft, and measurable
-            impact.
+            Cada proyecto es una historia de resolución de problemas, oficio e impacto.
           </p>
         </div>
 

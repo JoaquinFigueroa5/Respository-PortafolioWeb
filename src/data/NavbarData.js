@@ -1,1 +1,1 @@
-export const NAV_LINKS = ["Work", "Skills", "About", "Contact"];
+export const NAV_LINKS = ["Proyectos", "Habilidades", "Sobre mí", "Contacto"];
