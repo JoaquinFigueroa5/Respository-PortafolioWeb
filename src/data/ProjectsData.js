@@ -48,29 +48,123 @@ export const PROJECTS = [
   },
   {
     id: 2,
-    year: "2024",
-    title: "Orbit Design System",
-    category: "Design System · Frontend",
-    desc: "Comprehensive component library serving 40+ products with automated a11y testing & Storybook documentation.",
+    year: "2026",
+    title: "Huella Viva",
+    category: "Plataforma Web · Concientizacion",
+    desc: "Plataforma web para la concientizacion y educacion sobre la adopcion de animales callejeros o en albergues.",
     tags: [
-      "TypeScript",
-      "Storybook",
-      "CSS Vars",
-      "Jest"
+      "React",
+      "TailwindCSS",
+      "Framer Motion",
+      "Vercel",
+      "Shadcn/ui"
     ],
-    accentClass: "text-violet-400",
-    borderClass: "border-violet-500/20",
-    bgClass: "bg-[#0a050f]",
-    barClass: "from-violet-400 to-purple-500",
-    glowColor: "rgba(139,92,246,0.1)",
-    detailedDesc: "Orbit is a comprehensive design system that powers 40+ products across the company. It includes 150+ accessible components, a comprehensive Storybook documentation site, and automated accessibility testing that integrates into the CI/CD pipeline.",
+    accentClass: "text-green-600",
+    borderClass: "border-green-500/20",
+    bgClass: "bg-[#000000]",
+    barClass: "from-green-400 to-orange-500",
+    glowColor: "rgba(28,184,28,0.1)",
+    detailedDesc: "Pagina web para la concientizacion y la ayuda de animales callejeros o animales que sufran maltrato, cuenta con distintos recursos para que las personas puedan educarse correctamente, cuenta con una Guia de emergencia, un reporte de animal callejero o animal que sufre maltrato, cuanta con un test de responsabilidad para revisar cual seria la mejor opcion para el usuario, un generador de carteles para adopcion o que se busca, etc.",
     metrics: [
-      "40+ products using Orbit",
-      "100% WCAG 2.1 AA compliance",
-      "50% reduction in development time"
+      "Recursos academicos para la ayuda de animales.",
+      "Guia de emergencia y reportes.",
+      "Calculadora de presupuesto para perros y gatos.",
+      "Test de responsabilidad para la adopcion de animales.",
+      "Carteles para adopcion o que se busca.",
+      "Donativos para la empresa encargada"
     ],
-    challenge: "Maintaining consistency across 40+ products while allowing enough flexibility for teams was difficult. Manual testing for accessibility was time-consuming and error-prone.",
-    solution: "Created a TypeScript-first component library with CSS custom properties for theming. Built an automated accessibility testing pipeline using Jest and axe-core. Documented everything in Storybook with interactive playgrounds."
+    challenge: "Proponer una solucion a un problema muy comun en Guatemala como lo es el abandono, descuido y falta de informacion acerca de animales, ademas de hacerlo lo mas intuitivo posible para los usuarios. Ademas se realizo solo Frontend por cuestiones de tiempo e implementacion, gracias a la API de WhatsApp se pudo implementar un sistema de mensajes para donaciones y reportes.",
+    solution: "Se creo una pagina web para poder brindar educacion y ayuda para los que no pueden hablar, ademas de educar de forma intuitiva a las personas que no saben mucho acerca del tema ademas de ser algo 'diferente' e incluso divertido de tratar para los usuarios.",
+    images: [
+      {
+        "src": "/HuellaViva/carrousel.png",
+        "alt": "Screenshot del carrusel"
+      },
+      {
+        "src": "/HuellaViva/timeline.png",
+        "alt": "Screenshot del modal"
+      },
+      {
+        "src": "/HuellaViva/donation1.png",
+        "alt": "Screenshot del expand-image"
+      },
+      {
+        "src": "/HuellaViva/donation2.png",
+        "alt": "Screenshot del filters"
+      },
+      {
+        "src": "/HuellaViva/myths.png",
+        "alt": "Screenshot del myths"
+      },
+      {
+        "src": "/HuellaViva/reality.png",
+        "alt": "Screenshot del gallery"
+      },
+      {
+        "src": "/HuellaViva/emergency.png",
+        "alt": "Screenshot del emergency"
+      },
+      {
+        "src": "/HuellaViva/report1.png",
+        "alt": "Screenshot del report1"
+      },
+      {
+        "src": "/HuellaViva/report2.png",
+        "alt": "Screenshot del report2"
+      },
+      {
+        "src": "/HuellaViva/report3.png",
+        "alt": "Screenshot del report3"
+      },
+      {
+        "src": "/HuellaViva/report4.png",
+        "alt": "Screenshot del report4"
+      },
+      {
+        "src": "/HuellaViva/report5.png",
+        "alt": "Screenshot del report5"
+      },
+      {
+        "src": "/HuellaViva/test1.png",
+        "alt": "Screenshot del test1"
+      },
+      {
+        "src": "/HuellaViva/test2.png",
+        "alt": "Screenshot del test2"
+      },
+      {
+        "src": "/HuellaViva/poster1.png",
+        "alt": "Screenshot del poster1"
+      },
+      {
+        "src": "/HuellaViva/poster2.png",
+        "alt": "Screenshot del poster2"
+      },
+      {
+        "src": "/HuellaViva/poster3.png",
+        "alt": "Screenshot del poster3"
+      },
+      {
+        "src": "/HuellaViva/poster4.png",
+        "alt": "Screenshot del poster4"
+      },
+      {
+        "src": "/HuellaViva/poster5.png",
+        "alt": "Screenshot del poster5"
+      },
+      {
+        "src": "/HuellaViva/calculator1.png",
+        "alt": "Screenshot del calculator1"
+      },
+      {
+        "src": "/HuellaViva/calculator2.png",
+        "alt": "Screenshot del calculator2"
+      },
+      {
+        "src": "/HuellaViva/calculator3.png",
+        "alt": "Screenshot del calculator3"
+      }
+    ]
   },
   {
     id: 3,

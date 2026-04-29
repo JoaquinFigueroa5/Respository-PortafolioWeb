@@ -10,13 +10,6 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import Lightbox from "yet-another-react-lightbox";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import Counter from "yet-another-react-lightbox/plugins/counter";
-import "yet-another-react-lightbox/styles.css";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
-import "yet-another-react-lightbox/plugins/counter.css";
 
 const prefersReducedMotion =
   typeof window !== "undefined" &&
@@ -25,79 +18,109 @@ const prefersReducedMotion =
 function getModalRect() {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
-  const w  = Math.min(960, vw - 32);
-  const h  = Math.min(vh * 0.9, 820);
+  const w = Math.min(960, vw - 32);
+  const h = Math.min(vh * 0.9, 820);
   return { left: (vw - w) / 2, top: (vh - h) / 2, width: w, height: h };
 }
 
 const ChevronLeft = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden
+  >
     <path d="m15 18-6-6 6-6" />
   </svg>
 );
 const ChevronRight = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden
+  >
     <path d="m9 18 6-6-6-6" />
   </svg>
 );
-const Expand = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-  </svg>
-);
 const TagIcon = () => (
-  <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+  <svg
+    width="11"
+    height="11"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden
+  >
     <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z" />
     <circle cx="7.5" cy="7.5" r="1.5" fill="currentColor" stroke="none" />
   </svg>
 );
 
 const TECH_CATEGORIES = {
-  React:      { cat: "Frontend",  hex: "#61DAFB" },
-  "Next.js":  { cat: "Frontend",  hex: "#ffffff" },
-  "Vue 3":    { cat: "Frontend",  hex: "#41B883" },
-  TypeScript: { cat: "Language",  hex: "#3178C6" },
-  Storybook:  { cat: "Tooling",   hex: "#FF4785" },
-  "Node.js":  { cat: "Backend",   hex: "#339933" },
-  PostgreSQL: { cat: "Database",  hex: "#336791" },
-  Redis:      { cat: "Database",  hex: "#DC382D" },
-  GraphQL:    { cat: "API",       hex: "#E10098" },
-  ClickHouse: { cat: "Database",  hex: "#FFCC00" },
+  React: { cat: "Frontend", hex: "#61DAFB" },
+  "Next.js": { cat: "Frontend", hex: "#ffffff" },
+  "Vue 3": { cat: "Frontend", hex: "#41B883" },
+  TypeScript: { cat: "Language", hex: "#3178C6" },
+  Storybook: { cat: "Tooling", hex: "#FF4785" },
+  "Node.js": { cat: "Backend", hex: "#339933" },
+  PostgreSQL: { cat: "Database", hex: "#336791" },
+  Redis: { cat: "Database", hex: "#DC382D" },
+  GraphQL: { cat: "API", hex: "#E10098" },
+  ClickHouse: { cat: "Database", hex: "#FFCC00" },
   "Vercel Edge": { cat: "Infra", hex: "#ffffff" },
-  Stripe:     { cat: "Payments",  hex: "#635BFF" },
-  "D3.js":    { cat: "DataViz",   hex: "#F9A03C" },
-  WebGL:      { cat: "Graphics",  hex: "#990000" },
-  Sanity:     { cat: "CMS",       hex: "#F03E2F" },
-  Jest:       { cat: "Testing",   hex: "#C21325" },
-  "CSS Vars": { cat: "Styling",   hex: "#264DE4" },
+  Stripe: { cat: "Payments", hex: "#635BFF" },
+  "D3.js": { cat: "DataViz", hex: "#F9A03C" },
+  WebGL: { cat: "Graphics", hex: "#990000" },
+  Sanity: { cat: "CMS", hex: "#F03E2F" },
+  Jest: { cat: "Testing", hex: "#C21325" },
+  "CSS Vars": { cat: "Styling", hex: "#264DE4" },
+  TailwindCSS: { cat: "Styling", hex: "#06B6D4" },
+  "Chakra UI": { cat: "Styling", hex: "#06B6D4" },
+  "Framer Motion": { cat: "Styling", hex: "#fff" },
+  Vercel: { cat: "Infra", hex: "#fff" },
+  Express: { cat: "Backend", hex: "#339933" },
+  "Shadcn/ui": { cat: "Styling", hex: "#fff" },
+  MongoDB: { cat: "Database", hex: "#41B883" },
 };
 
 const CAT_COLORS = {
   Frontend: "rgba(97,218,251,0.12)",
   Language: "rgba(49,120,198,0.12)",
-  Backend:  "rgba(51,153,51,0.12)",
+  Backend: "rgba(51,153,51,0.12)",
   Database: "rgba(220,56,45,0.12)",
-  API:      "rgba(225,0,152,0.12)",
-  Infra:    "rgba(255,255,255,0.08)",
+  API: "rgba(225,0,152,0.12)",
+  Infra: "rgba(255,255,255,0.08)",
   Payments: "rgba(99,91,255,0.12)",
-  DataViz:  "rgba(249,160,60,0.12)",
+  DataViz: "rgba(249,160,60,0.12)",
   Graphics: "rgba(180,0,0,0.12)",
-  CMS:      "rgba(240,62,47,0.12)",
-  Testing:  "rgba(194,19,37,0.12)",
-  Tooling:  "rgba(255,71,133,0.12)",
-  Styling:  "rgba(38,77,228,0.12)",
-  Other:    "rgba(255,255,255,0.06)",
+  CMS: "rgba(240,62,47,0.12)",
+  Testing: "rgba(194,19,37,0.12)",
+  Tooling: "rgba(255,71,133,0.12)",
+  Styling: "rgba(38,77,228,0.12)",
+  Other: "rgba(255,255,255,0.06)",
 };
 
 function TechPill({ tag, accentHex }) {
-  const info   = TECH_CATEGORIES[tag];
+  const info = TECH_CATEGORIES[tag];
   const dotHex = info?.hex ?? accentHex;
-  const bgColor= info ? CAT_COLORS[info.cat] ?? CAT_COLORS.Other : CAT_COLORS.Other;
-  const cat    = info?.cat ?? "Other";
+  const bgColor = info
+    ? (CAT_COLORS[info.cat] ?? CAT_COLORS.Other)
+    : CAT_COLORS.Other;
+  const cat = info?.cat ?? "Other";
 
   return (
     <span
@@ -123,31 +146,40 @@ function TechPill({ tag, accentHex }) {
   );
 }
 
-function ImageCarousel({ images, accentHex, onOpenLightbox }) {
+function ImageCarousel({ images, accentHex }) {
   const [activeIdx, setActiveIdx] = useState(0);
-  const trackRef   = useRef(null);
+  const trackRef = useRef(null);
 
-  const slideTo = useCallback((idx) => {
-    if (!trackRef.current || prefersReducedMotion) {
+  const slideTo = useCallback(
+    (idx) => {
+      if (!trackRef.current || prefersReducedMotion) {
+        setActiveIdx(idx);
+        return;
+      }
+      const slideWidth = trackRef.current.offsetWidth / images.length;
+      gsap.to(trackRef.current, {
+        x: -slideWidth * idx,
+        duration: 0.45,
+        ease: "power3.inOut",
+        onComplete: () => setActiveIdx(idx),
+      });
       setActiveIdx(idx);
-      return;
-    }
-    const slideWidth = trackRef.current.offsetWidth / images.length;
-    gsap.to(trackRef.current, {
-      x: -slideWidth * idx,
-      duration: 0.45,
-      ease: "power3.inOut",
-      onComplete: () => setActiveIdx(idx),
-    });
-    setActiveIdx(idx);
-  }, [images.length]);
+    },
+    [images.length],
+  );
 
-  const prev = (e) => { e.stopPropagation(); slideTo((activeIdx - 1 + images.length) % images.length); };
-  const next = (e) => { e.stopPropagation(); slideTo((activeIdx + 1) % images.length); };
+  const prev = (e) => {
+    e.stopPropagation();
+    slideTo((activeIdx - 1 + images.length) % images.length);
+  };
+  const next = (e) => {
+    e.stopPropagation();
+    slideTo((activeIdx + 1) % images.length);
+  };
 
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === "ArrowLeft")  prev(e);
+      if (e.key === "ArrowLeft") prev(e);
       if (e.key === "ArrowRight") next(e);
     };
     window.addEventListener("keydown", onKey);
@@ -158,37 +190,24 @@ function ImageCarousel({ images, accentHex, onOpenLightbox }) {
 
   return (
     <div className="mt-8">
-      <div className="flex items-center justify-between mb-3">
-        <h4 className="font-syne font-bold text-sm text-white tracking-widest uppercase">
-          Galeria
-        </h4>
-        <button
-          onClick={() => onOpenLightbox(activeIdx)}
-          className="inline-flex items-center gap-1.5 font-mono text-[0.68rem] tracking-widest
-            uppercase text-white/40 hover:text-white/80 transition-colors duration-200
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
-          aria-label="Open fullscreen gallery"
+      <h4 className="font-syne font-bold text-sm text-white tracking-widest uppercase mb-3">
+        Galeria
+      </h4>
+
+      <div
+        className="relative rounded-xl overflow-hidden bg-white/4 border border-white/8"
+        style={{ aspectRatio: "16/9" }}
+      >
+        <div
+          ref={trackRef}
+          className="flex h-full will-change-transform"
+          style={{ width: `${images.length * 100}%` }}
         >
-          <Expand />
-          Fullscreen
-        </button>
-      </div>
-
-      <div className="relative rounded-xl overflow-hidden bg-white/4 border border-white/8"
-        style={{ aspectRatio: "16/9" }}>
-
-        <div ref={trackRef} className="flex h-full will-change-transform"
-          style={{ width: `${images.length * 100}%` }}>
           {images.map((img, i) => (
             <div
               key={i}
-              className="relative shrink-0 cursor-zoom-in"
+              className="relative shrink-0"
               style={{ width: `${100 / images.length}%` }}
-              onClick={() => onOpenLightbox(i)}
-              role="button"
-              tabIndex={0}
-              aria-label={`View image ${i + 1} of ${images.length} in fullscreen`}
-              onKeyDown={(e) => e.key === "Enter" && onOpenLightbox(i)}
             >
               <img
                 src={img.src}
@@ -197,12 +216,6 @@ function ImageCarousel({ images, accentHex, onOpenLightbox }) {
                 loading="lazy"
                 decoding="async"
               />
-              <div className="absolute inset-0 bg-black/0 hover:bg-black/30 transition-colors duration-200
-                flex items-center justify-center opacity-0 hover:opacity-100">
-                <span className="text-white/80">
-                  <Expand />
-                </span>
-              </div>
             </div>
           ))}
         </div>
@@ -234,16 +247,22 @@ function ImageCarousel({ images, accentHex, onOpenLightbox }) {
           </>
         )}
 
-        <div className="absolute bottom-3 right-3 font-mono text-[0.6rem] tracking-widest
+        <div
+          className="absolute bottom-3 right-3 font-mono text-[0.6rem] tracking-widest
           text-white/60 bg-black/60 border border-white/10 rounded-full px-2.5 py-1"
-          aria-live="polite" aria-atomic>
+          aria-live="polite"
+          aria-atomic
+        >
           {activeIdx + 1} / {images.length}
         </div>
       </div>
 
       {images.length > 1 && (
-        <div className="flex gap-2 mt-3 overflow-x-auto pb-1 scrollbar-none"
-          role="tablist" aria-label="Image thumbnails">
+        <div
+          className="flex flex-wrap gap-2 mt-3"
+          role="tablist"
+          aria-label="Image thumbnails"
+        >
           {images.map((img, i) => (
             <button
               key={i}
@@ -251,12 +270,18 @@ function ImageCarousel({ images, accentHex, onOpenLightbox }) {
               aria-selected={i === activeIdx}
               aria-label={`Go to image ${i + 1}`}
               onClick={() => slideTo(i)}
-              className="shrink-0 rounded-lg overflow-hidden border-2 transition-all duration-200
+              className="rounded-lg overflow-hidden border-2 transition-all duration-200
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
               style={{
-                width: 64, height: 40,
-                borderColor: i === activeIdx ? accentHex : "rgba(255,255,255,0.1)",
+                width: 64,
+                height: 40,
+                flexShrink: 0,
+                borderColor:
+                  i === activeIdx ? accentHex : "rgba(255,255,255,0.1)",
                 opacity: i === activeIdx ? 1 : 0.45,
+                boxShadow:
+                  i === activeIdx ? `0 0 0 1px ${accentHex}55` : "none",
+                transition: "opacity 0.2s, border-color 0.2s, box-shadow 0.2s",
               }}
             >
               <img
@@ -276,19 +301,20 @@ function ImageCarousel({ images, accentHex, onOpenLightbox }) {
 }
 
 function ProjectCard({ p, index }) {
-  const cardRef        = useRef(null);
-  const glowRef        = useRef(null);
-  const triggerRef     = useRef(null);
+  const cardRef = useRef(null);
+  const glowRef = useRef(null);
+  const triggerRef = useRef(null);
   const dialogContentRef = useRef(null);
-  const cardRectRef    = useRef(null);
+  const cardRectRef = useRef(null);
 
-  const [isOpen, setIsOpen]           = useState(false);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxIdx, setLightboxIdx]   = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   useGSAP(() => {
     gsap.from(cardRef.current, {
-      autoAlpha: 0, y: 70, duration: 0.9, ease: "power3.out",
+      autoAlpha: 0,
+      y: 70,
+      duration: 0.9,
+      ease: "power3.out",
       scrollTrigger: {
         trigger: cardRef.current,
         start: "top 84%",
@@ -297,51 +323,66 @@ function ProjectCard({ p, index }) {
     });
   });
 
-  const openLightbox = useCallback((idx = 0) => {
-    setLightboxIdx(idx);
-    setLightboxOpen(true);
-  }, []);
 
   const handleOpen = useCallback(() => {
-    if (cardRef.current) cardRectRef.current = cardRef.current.getBoundingClientRect();
+    if (cardRef.current)
+      cardRectRef.current = cardRef.current.getBoundingClientRect();
     setIsOpen(true);
   }, []);
 
   const setContentRef = useCallback((node) => {
     dialogContentRef.current = node;
     if (!node || prefersReducedMotion) return;
-    const card  = cardRectRef.current;
+    const card = cardRectRef.current;
     if (!card) return;
     const modal = getModalRect();
 
     gsap.set(node, {
-      top: card.top, left: card.left,
-      width: card.width, height: card.height,
-      borderRadius: "1rem", opacity: 1,
+      top: card.top,
+      left: card.left,
+      width: card.width,
+      height: card.height,
+      borderRadius: "1rem",
+      opacity: 1,
     });
     gsap.to(node, {
-      top: modal.top, left: modal.left,
-      width: modal.width, height: modal.height,
+      top: modal.top,
+      left: modal.left,
+      width: modal.width,
+      height: modal.height,
       borderRadius: "0.75rem",
-      duration: 0.55, ease: "power3.inOut",
+      duration: 0.55,
+      ease: "power3.inOut",
     });
   }, []);
 
   const handleClose = useCallback(() => {
-    if (!dialogContentRef.current || prefersReducedMotion) { setIsOpen(false); return; }
-    const card = cardRef.current?.getBoundingClientRect() ?? cardRectRef.current;
-    if (!card) { setIsOpen(false); return; }
+    if (!dialogContentRef.current || prefersReducedMotion) {
+      setIsOpen(false);
+      return;
+    }
+    const card =
+      cardRef.current?.getBoundingClientRect() ?? cardRectRef.current;
+    if (!card) {
+      setIsOpen(false);
+      return;
+    }
     gsap.to(dialogContentRef.current, {
-      top: card.top, left: card.left,
-      width: card.width, height: card.height,
+      top: card.top,
+      left: card.left,
+      width: card.width,
+      height: card.height,
       borderRadius: "1rem",
-      duration: 0.4, ease: "power2.inOut",
+      duration: 0.4,
+      ease: "power2.inOut",
       onComplete: () => setIsOpen(false),
     });
   }, []);
 
   const onOpenChange = useCallback(
-    (open) => { open ? handleOpen() : handleClose(); },
+    (open) => {
+      open ? handleOpen() : handleClose();
+    },
     [handleOpen, handleClose],
   );
 
@@ -349,8 +390,9 @@ function ProjectCard({ p, index }) {
     const r = cardRef.current.getBoundingClientRect();
     gsap.to(glowRef.current, {
       x: e.clientX - r.left - 150,
-      y: e.clientY - r.top  - 150,
-      duration: 0.4, ease: "power2.out",
+      y: e.clientY - r.top - 150,
+      duration: 0.4,
+      ease: "power2.out",
     });
   };
   const onEnter = () => {
@@ -362,17 +404,20 @@ function ProjectCard({ p, index }) {
     gsap.to(cardRef.current, { y: 0, duration: 0.45, ease: "power2.out" });
   };
 
-  const lightboxSlides = (p.images ?? []).map((img) => ({
-    src: img.src,
-    alt: img.alt ?? p.title,
-  }));
 
-  const accentHex =
-    p.accentClass?.includes("emerald") ? "#34d399" :
-    p.accentClass?.includes("violet")  ? "#a78bfa" :
-    p.accentClass?.includes("orange")  ? "#fb923c" :
-    p.accentClass?.includes("amber")   ? "#fbbf24" : 
-    p.accentClass?.includes("red") ? "#f94144" : "#34d399";
+  const accentHex = p.accentClass?.includes("emerald")
+    ? "#34d399"
+    : p.accentClass?.includes("violet")
+      ? "#a78bfa"
+      : p.accentClass?.includes("orange")
+        ? "#fb923c"
+        : p.accentClass?.includes("amber")
+          ? "#fbbf24"
+          : p.accentClass?.includes("red")
+            ? "#f94144"
+          : p.accentClass?.includes('green')
+            ? "#00A63E"
+            : "#34d399";
 
   return (
     <>
@@ -387,7 +432,9 @@ function ProjectCard({ p, index }) {
         <div
           ref={glowRef}
           className="absolute w-72 h-72 rounded-full pointer-events-none opacity-0"
-          style={{ background: `radial-gradient(circle, ${p.glowColor} 0%, transparent 70%)` }}
+          style={{
+            background: `radial-gradient(circle, ${p.glowColor} 0%, transparent 70%)`,
+          }}
         />
 
         <div className="relative">
@@ -395,17 +442,23 @@ function ProjectCard({ p, index }) {
             <span className="font-mono text-xs text-white/25">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <span className={`font-mono text-xs tracking-widest ${p.accentClass}`}>
+            <span
+              className={`font-mono text-xs tracking-widest ${p.accentClass}`}
+            >
               {p.year}
             </span>
           </div>
 
-          <div className={`w-12 h-0.5 bg-linear-to-r ${p.barClass} rounded-full mb-6`} />
+          <div
+            className={`w-12 h-0.5 bg-linear-to-r ${p.barClass} rounded-full mb-6`}
+          />
 
           <h3 className="font-syne font-black text-3xl text-white tracking-tight leading-none mb-2">
             {p.title}
           </h3>
-          <p className={`font-mono text-xs tracking-widest uppercase ${p.accentClass} mb-5`}>
+          <p
+            className={`font-mono text-xs tracking-widest uppercase ${p.accentClass} mb-5`}
+          >
             {p.category}
           </p>
           <p className="font-sans text-sm text-white/45 leading-relaxed mb-8">
@@ -430,7 +483,9 @@ function ProjectCard({ p, index }) {
                 className={`flex items-center gap-2 ${p.accentClass} cursor-pointer bg-transparent border-none p-0
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current rounded`}
               >
-                <span className="font-syne font-bold text-xs tracking-widest">VIEW CASE STUDY</span>
+                <span className="font-syne font-bold text-xs tracking-widest">
+                  VIEW CASE STUDY
+                </span>
                 <span aria-hidden>→</span>
               </button>
             </DialogTrigger>
@@ -444,13 +499,19 @@ function ProjectCard({ p, index }) {
             >
               <ScrollArea className="h-full w-full">
                 <div className="p-8">
-
                   <DialogHeader>
                     <div className="flex items-center gap-3 mb-2">
-                      <span className={`font-mono text-xs tracking-widest ${p.accentClass}`}>
+                      <span
+                        className={`font-mono text-xs tracking-widest ${p.accentClass}`}
+                      >
                         {p.year}
                       </span>
-                      <span className="font-mono text-xs text-white/30" aria-hidden>•</span>
+                      <span
+                        className="font-mono text-xs text-white/30"
+                        aria-hidden
+                      >
+                        •
+                      </span>
                       <span className="font-mono text-xs text-white/50 uppercase">
                         {p.category}
                       </span>
@@ -468,7 +529,6 @@ function ProjectCard({ p, index }) {
                     <ImageCarousel
                       images={p.images}
                       accentHex={accentHex}
-                      onOpenLightbox={openLightbox}
                     />
                   )}
 
@@ -483,8 +543,10 @@ function ProjectCard({ p, index }) {
                             key={i}
                             className="rounded-xl border border-white/10 bg-white/4 px-4 py-3"
                           >
-                            <p className="font-mono text-lg leading-none"
-                              style={{ color: accentHex }}>
+                            <p
+                              className="font-mono text-lg leading-none"
+                              style={{ color: accentHex }}
+                            >
                               {m.value ?? m}
                             </p>
                             {m.label && (
@@ -510,10 +572,14 @@ function ProjectCard({ p, index }) {
                       </div>
                     )}
                     {p.solution && (
-                      <div className="rounded-xl bg-white/3 p-5"
-                        style={{ border: `1px solid ${accentHex}22` }}>
-                        <h4 className="font-syne font-bold text-xs tracking-widest uppercase mb-2"
-                          style={{ color: accentHex }}>
+                      <div
+                        className="rounded-xl bg-white/3 p-5"
+                        style={{ border: `1px solid ${accentHex}22` }}
+                      >
+                        <h4
+                          className="font-syne font-bold text-xs tracking-widest uppercase mb-2"
+                          style={{ color: accentHex }}
+                        >
                           La Solución
                         </h4>
                         <p className="font-sans text-sm text-white/50 leading-relaxed">
@@ -540,16 +606,26 @@ function ProjectCard({ p, index }) {
                     </div>
 
                     {(() => {
-                      const cats = [...new Set(
-                        p.tags.map((t) => TECH_CATEGORIES[t]?.cat ?? "Other")
-                      )];
+                      const cats = [
+                        ...new Set(
+                          p.tags.map((t) => TECH_CATEGORIES[t]?.cat ?? "Other"),
+                        ),
+                      ];
                       return cats.length > 1 ? (
                         <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-white/6">
                           {cats.map((cat) => (
-                            <span key={cat}
-                              className="inline-flex items-center gap-1.5 font-mono text-[0.6rem] tracking-widest uppercase text-white/30">
-                              <span className="w-1.5 h-1.5 rounded-full"
-                                style={{ background: CAT_COLORS[cat]?.replace("0.12", "0.9") ?? "#888" }} />
+                            <span
+                              key={cat}
+                              className="inline-flex items-center gap-1.5 font-mono text-[0.6rem] tracking-widest uppercase text-white/30"
+                            >
+                              <span
+                                className="w-1.5 h-1.5 rounded-full"
+                                style={{
+                                  background:
+                                    CAT_COLORS[cat]?.replace("0.12", "0.9") ??
+                                    "#888",
+                                }}
+                              />
                               {cat}
                             </span>
                           ))}
@@ -570,7 +646,6 @@ function ProjectCard({ p, index }) {
                       </button>
                     </DialogClose>
                   </div>
-
                 </div>
               </ScrollArea>
             </DialogContent>
@@ -578,24 +653,6 @@ function ProjectCard({ p, index }) {
         </div>
       </div>
 
-      {p.images?.length > 0 && (
-        <Lightbox
-          open={lightboxOpen}
-          close={() => setLightboxOpen(false)}
-          index={lightboxIdx}
-          slides={lightboxSlides}
-          plugins={[Thumbnails, Zoom, Counter]}
-          zoom={{ maxZoomPixelRatio: 3 }}
-          thumbnails={{ position: "bottom", width: 80, height: 50, gap: 8, border: 2, borderRadius: 6 }}
-          counter={{ container: { style: { top: "unset", bottom: 0 } } }}
-          styles={{
-            container: { backgroundColor: "rgba(0,0,0,0.94)" },
-            thumbnail: { border: `2px solid ${accentHex}` },
-          }}
-          carousel={{ finite: false }}
-          animation={{ fade: prefersReducedMotion ? 0 : 250, swipe: prefersReducedMotion ? 0 : 300 }}
-        />
-      )}
     </>
   );
 }
