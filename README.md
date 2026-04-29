@@ -23,4 +23,3 @@ If you are developing a production application, we recommend using TypeScript wi
 3. Gestion de repuestos centralizado
 4. Plataforma para publicar proyectos universitarios
 5. Chatbot IA
-6. 

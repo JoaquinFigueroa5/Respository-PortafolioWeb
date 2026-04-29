@@ -1,29 +1,50 @@
 export const PROJECTS = [
   {
     id: 1,
-    year: "2024",
-    title: "Nexus Platform",
-    category: "SaaS · Full-Stack",
-    desc: "Real-time collaboration suite with WebSockets, multi-tenant architecture and AI-powered insights dashboard.",
+    year: "2025",
+    title: "Auto Ventas Juanes",
+    category: "Aplicacion Web",
+    desc: "Plataforma web para la gestion de venta de vehiculos usados en Guatemala.",
     tags: [
       "React",
       "Node.js",
-      "PostgreSQL",
-      "Redis"
+      "MongoDB",
+      "Express",
+      "Chakra UI"
     ],
-    accentClass: "text-emerald-400",
-    borderClass: "border-emerald-500/20",
-    bgClass: "bg-[#050f0a]",
-    barClass: "from-emerald-400 to-teal-500",
-    glowColor: "rgba(52,211,153,0.1)",
-    detailedDesc: "Nexus Platform is a real-time collaboration suite that enables teams to work together seamlessly, regardless of location. Built with WebSockets for instant updates, a multi-tenant architecture to support multiple organizations, and an AI-powered insights dashboard that provides actionable analytics.",
+    accentClass: "text-red-400",
+    borderClass: "border-red-500/20",
+    bgClass: "bg-[#000000]",
+    barClass: "from-red-400 to-black-500",
+    glowColor: "rgba(255,0,0,0.1)",
+    detailedDesc: "Plataforma web para la gestion de venta de vehiculos en Guatemala. Cuenta tanto con vista de usuario-cliente como usuario-administrador donde en la parte administrativa se podran gestionar de manera eficiente cada vechiculo como añadir al inventario con el almacenamiento de imagenes en la nube con Cloudinary, ademas de la busqueda, edicion y eliminacion (marcado como vendido).",
     metrics: [
-      "40% increase in team productivity",
-      "Sub-100ms real-time sync",
-      "99.9% uptime SLA"
+      "Diseñado y desarrollado para la gestión eficiente de ventas de vehículos.",
+      "Implementación de sistema de autenticación seguro con JWT.",
+      "Integración con servicios en la nube para almacenamiento de imágenes."
     ],
-    challenge: "The main challenge was handling concurrent edits from multiple users while maintaining data consistency. Traditional REST APIs introduced too much latency, and existing real-time solutions didn't scale beyond 50 concurrent users.",
-    solution: "Implemented a custom WebSocket layer with operational transformation for conflict resolution, Redis for pub/sub messaging, and PostgreSQL with row-level security for multi-tenancy. Added an AI layer that analyzes team patterns to provide predictive insights."
+    challenge: "Mi primer proyecto vendido profesionalmente ademas de nueva implementacion de tecnologias en la nube como lo es Cloudinary, ademas de estar en un entorno de 'la vida real' de programacion y priorizar la optimizacion a la vez de presentar algo 'intuitivo' tanto para el usuario como el administrador.",
+    solution: "Se optimizó el rendimiento de la aplicación mediante la implementación de técnicas de optimización de código y recursos, además de implementar un sistema de autenticación seguro con JWT que permitio la implementacion de esta plataforma web para un negocio que no contaba con ninguna pagina web y que lo impulso por delante de la competencia.",
+    liveLink: "https://autoventasjuanes-dd720.web.app/",
+    repoLink: "",
+    images: [
+      {
+        "src": "/AutoVentas/carrousel.png",
+        "alt": "Screenshot del carrusel"
+      },
+      {
+        "src": "/AutoVentas/modal.png",
+        "alt": "Screenshot del modal"
+      },
+      {
+        "src": "/AutoVentas/expand-image.png",
+        "alt": "Screenshot del expand-image"
+      },
+      {
+        "src": "/AutoVentas/filters.png",
+        "alt": "Screenshot del filters"
+      }
+    ]
   },
   {
     id: 2,
