@@ -1,6 +1,7 @@
 import { useGSAP, gsap } from "@/lib/gsap";
 import { useEffect, useRef, useState } from "react";
 import { NAV_LINKS } from "@/data/NavbarData";
+import { scrollToHash } from "@/utils/scrollToHash";
 
 function Navbar() {
   const navRef        = useRef(null);
@@ -45,9 +46,9 @@ function Navbar() {
 
         <div className="flex items-center gap-4 min-w-30">
           <span className="nav-logo font-syne font-black text-lg tracking-tight text-white leading-none">
-            <span className="text-emerald-400">{"<"}</span>
+            <span className="text-[#7c6aec]">{"<"}</span>
             Joaki
-            <span className="text-emerald-400">{"/>"}</span>
+            <span className="text-[#7c6aec]">{`/>`}</span>
           </span>
           <span className="nav-index h-4 w-px bg-white/10" />
           <span className="nav-index font-mono text-[0.6rem] tracking-[0.18em] uppercase text-white/20">
@@ -58,21 +59,26 @@ function Navbar() {
         <div className="flex items-center gap-1">
           {NAV_LINKS.map((l, i) => (
             <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
-              onClick={() => setActiveLink(l)}
+              key={i}
+              href={l.href}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToHash(l.href);
+                setActiveLink(l.name);
+              }}
               className="nav-link group relative font-mono text-[0.65rem] tracking-[0.18em] uppercase px-4 py-2 rounded-full transition-colors duration-200"
-              style={{ color: activeLink === l ? "#fff" : "rgba(255,255,255,0.38)" }}
+              style={{ color: activeLink === l.name ? "#fff" : "rgba(255,255,255,0.38)" }}
             >
-              {activeLink === l && (
+              {console.log(l)}
+              {activeLink === l.name && (
                 <span className="absolute inset-0 rounded-full bg-white/6 border border-white/10" />
               )}
-              <span className="relative font-mono text-[0.5rem] text-emerald-400/60 mr-1 align-top leading-none"
+              <span className="relative font-mono text-[0.5rem] text-[#7c6aec] mr-1 align-top leading-none"
                 style={{ fontSize: "0.5rem" }}>
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="relative group-hover:text-white transition-colors duration-200">{l}</span>
-              <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+              <span className="relative group-hover:text-white transition-colors duration-200">{l.name}</span>
+              <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#7c6aec] opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
             </a>
           ))}
         </div>
@@ -80,7 +86,7 @@ function Navbar() {
         <div className="flex items-center gap-4 min-w-30 justify-end">
           <a
             href="#contact"
-            className="nav-cta font-syne font-bold text-xs text-[#04040c] bg-emerald-400 hover:bg-emerald-300 transition-colors duration-200 px-5 py-2 rounded-full tracking-wide whitespace-nowrap"
+            className="nav-cta font-syne font-bold text-xs text-[#04040c] bg-[#7c6aec] hover:bg-[#8f7ff0] transition-colors duration-200 px-5 py-2 rounded-full tracking-wide whitespace-nowrap"
           >
             ¡Hablemos!
           </a>

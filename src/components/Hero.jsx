@@ -57,11 +57,11 @@ function Hero() {
       />
 
       <div className="h-eyebrow flex items-center gap-3 mb-6">
-        <span className="w-10 h-px bg-emerald-400" />
-        <span className="font-mono text-xs tracking-[0.22em] uppercase text-emerald-400">
+        <span className="w-10 h-px bg-[#7c6aec]" />
+        <span className="font-mono text-xs tracking-[0.22em] uppercase text-[#7c6aec]">
           Disponible para cualquier proyecto
         </span>
-        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+        <span className="w-2 h-2 rounded-full bg-[#7c6aec] animate-pulse" />
       </div>
 
       <div className="relative flex-1 flex items-center">
@@ -137,7 +137,7 @@ function Hero() {
             <div className="flex gap-3 flex-wrap">
               <a
                 href="#proyectos"
-                className="h-cta font-syne font-bold text-xs text-[#04040c] bg-emerald-400 hover:bg-emerald-300 transition-colors duration-200 px-6 py-2.5 rounded-full tracking-wide"
+                className="h-cta font-syne font-bold text-xs text-[#04040c] bg-[#7c6aec] hover:bg-[#8f7ff0] transition-colors duration-200 px-6 py-2.5 rounded-full tracking-wide"
               >
                 Ver trabajo ↓
               </a>

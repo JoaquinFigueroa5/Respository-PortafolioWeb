@@ -8,6 +8,7 @@ import WorkSection from "@/components/WorkSection";
 import SkillsSection from "@/components/SkillsSection";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
+import ScrollToTop from "@/components/ScrollToTop";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -21,6 +22,7 @@ export default function Dashboard() {
       <SkillsSection />
       <AboutSection />
       <ContactSection />
+      <ScrollToTop />
     </div>
   );
 }
