@@ -6,8 +6,7 @@ function Hero() {
 
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    tl.from(".h-tag",    { autoAlpha: 0, x: -24, duration: 0.7 }, 0.2)
-      .from(".h-index",  { autoAlpha: 0, x:  24, duration: 0.7 }, 0.2)
+    tl.from(".h-eyebrow",{ autoAlpha: 0, y: -20, duration: 0.7 }, 0.2)
       .from(".h-name",   { autoAlpha: 0, y:  80, skewY: 2, duration: 1.1 }, 0.4)
       .from(".h-divider",{ scaleX: 0, transformOrigin: "left center", duration: 0.9 }, 0.85)
       .from(".h-role",   { autoAlpha: 0, y: 20, duration: 0.7, stagger: 0.1 }, 1.0)

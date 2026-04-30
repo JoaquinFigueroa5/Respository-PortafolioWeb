@@ -75,6 +75,8 @@ export const PROJECTS = [
     ],
     challenge: "Proponer una solucion a un problema muy comun en Guatemala como lo es el abandono, descuido y falta de informacion acerca de animales, ademas de hacerlo lo mas intuitivo posible para los usuarios. Ademas se realizo solo Frontend por cuestiones de tiempo e implementacion, gracias a la API de WhatsApp se pudo implementar un sistema de mensajes para donaciones y reportes.",
     solution: "Se creo una pagina web para poder brindar educacion y ayuda para los que no pueden hablar, ademas de educar de forma intuitiva a las personas que no saben mucho acerca del tema ademas de ser algo 'diferente' e incluso divertido de tratar para los usuarios.",
+    liveLink: "https://www.huellavivagt.me/",
+    repoLink: "https://github.com/JoaquinFigueroa5/Repository-HuellaViva",
     images: [
       {
         "src": "/HuellaViva/carrousel.png",
@@ -190,7 +192,9 @@ export const PROJECTS = [
       "3x increase in conversion rate"
     ],
     challenge: "Legacy e-commerce platform was slow, with TTFB over 2 seconds. Poor mobile experience was hurting conversion rates significantly.",
-    solution: "Moved to Next.js with Vercel Edge for global distribution. Implemented Sanity CMS for content and Stripe for payments. Used dynamic rendering with stale-while-revalidate for optimal performance."
+    solution: "Moved to Next.js with Vercel Edge for global distribution. Implemented Sanity CMS for content and Stripe for payments. Used dynamic rendering with stale-while-revalidate for optimal performance.",
+    liveLink: "",
+    repoLink: ""
   },
   {
     id: 4,
@@ -216,6 +220,8 @@ export const PROJECTS = [
       "Real-time insights < 500ms"
     ],
     challenge: "Processing and visualizing millions of data points in real-time while maintaining smooth performance was extremely challenging. Existing charting libraries couldn't handle the data volume.",
-    solution: "Built a custom WebGL chart engine using Vue 3 and D3.js for data processing. Integrated ClickHouse for efficient time-series queries. Implemented progressive rendering for smooth interactions."
+    solution: "Built a custom WebGL chart engine using Vue 3 and D3.js for data processing. Integrated ClickHouse for efficient time-series queries. Implemented progressive rendering for smooth interactions.",
+    liveLink: "",
+    repoLink: ""
   },
 ];

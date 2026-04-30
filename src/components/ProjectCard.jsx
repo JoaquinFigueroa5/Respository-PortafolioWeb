@@ -1,5 +1,5 @@
 import { useGSAP, gsap } from "@/lib/gsap";
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect, memo } from "react";
 import {
   Dialog,
   DialogTrigger,
@@ -10,6 +10,13 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { FaExternalLinkAlt } from "react-icons/fa";
+import {
+  FaChevronRight as ChevronRight,
+  FaChevronLeft as ChevronLeft,
+  FaTag as TagIcon,
+  FaGithub,
+} from "react-icons/fa";
 
 const prefersReducedMotion =
   typeof window !== "undefined" &&
@@ -22,53 +29,6 @@ function getModalRect() {
   const h = Math.min(vh * 0.9, 820);
   return { left: (vw - w) / 2, top: (vh - h) / 2, width: w, height: h };
 }
-
-const ChevronLeft = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden
-  >
-    <path d="m15 18-6-6 6-6" />
-  </svg>
-);
-const ChevronRight = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden
-  >
-    <path d="m9 18 6-6-6-6" />
-  </svg>
-);
-const TagIcon = () => (
-  <svg
-    width="11"
-    height="11"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden
-  >
-    <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z" />
-    <circle cx="7.5" cy="7.5" r="1.5" fill="currentColor" stroke="none" />
-  </svg>
-);
 
 const TECH_CATEGORIES = {
   React: { cat: "Frontend", hex: "#61DAFB" },
@@ -323,7 +283,6 @@ function ProjectCard({ p, index }) {
     });
   });
 
-
   const handleOpen = useCallback(() => {
     if (cardRef.current)
       cardRectRef.current = cardRef.current.getBoundingClientRect();
@@ -404,7 +363,6 @@ function ProjectCard({ p, index }) {
     gsap.to(cardRef.current, { y: 0, duration: 0.45, ease: "power2.out" });
   };
 
-
   const accentHex = p.accentClass?.includes("emerald")
     ? "#34d399"
     : p.accentClass?.includes("violet")
@@ -415,9 +373,9 @@ function ProjectCard({ p, index }) {
           ? "#fbbf24"
           : p.accentClass?.includes("red")
             ? "#f94144"
-          : p.accentClass?.includes('green')
-            ? "#00A63E"
-            : "#34d399";
+            : p.accentClass?.includes("green")
+              ? "#00A63E"
+              : "#34d399";
 
   return (
     <>
@@ -484,7 +442,7 @@ function ProjectCard({ p, index }) {
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current rounded`}
               >
                 <span className="font-syne font-bold text-xs tracking-widest">
-                  VIEW CASE STUDY
+                  MÁS DETALLES
                 </span>
                 <span aria-hidden>→</span>
               </button>
@@ -526,10 +484,7 @@ function ProjectCard({ p, index }) {
                   </DialogDescription>
 
                   {p.images?.length > 0 && (
-                    <ImageCarousel
-                      images={p.images}
-                      accentHex={accentHex}
-                    />
+                    <ImageCarousel images={p.images} accentHex={accentHex} />
                   )}
 
                   {p.metrics?.length > 0 && (
@@ -634,7 +589,89 @@ function ProjectCard({ p, index }) {
                     })()}
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-white/8 flex justify-end">
+                  <div className="mt-8 pt-6 border-t border-white/8 flex items-center justify-between flex-wrap gap-3">
+                    <div className="flex items-center gap-3">
+                      {/* ── VER DEMO ── */}
+                      {p.liveLink ? (
+                        <a
+                          href={p.liveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 font-syne font-bold text-xs tracking-widest
+                            rounded-full px-5 py-2.5 transition-all duration-300
+                            hover:scale-105 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current"
+                          style={{
+                            background: accentHex,
+                            color: "#0a0a0a",
+                            boxShadow: `0 0 20px ${accentHex}33`,
+                          }}
+                        >
+                          <FaExternalLinkAlt />
+                          VER DEMO
+                        </a>
+                      ) : (
+                        <span className="group relative flex items-center justify-center">
+                          <span
+                            className="inline-flex items-center gap-2 font-syne font-bold text-xs tracking-widest
+                              rounded-full px-5 py-2.5 opacity-35 cursor-not-allowed select-none"
+                            style={{
+                              background: `${accentHex}22`,
+                              color: accentHex,
+                            }}
+                            aria-label="Sin demo disponible"
+                          >
+                            <FaExternalLinkAlt />
+                            VER DEMO
+                          </span>
+                          {/* CSS-only Tooltip */}
+                          <span className="absolute bottom-[130%] left-1/2 -translate-x-1/2 w-max px-3 py-1.5 bg-[#141414] text-white/90 text-[11px] font-sans rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.5)] z-50 pointer-events-none transform group-hover:-translate-y-1">
+                            Sin demo disponible
+                            {/* Flecha del tooltip */}
+                            <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#141414]"></span>
+                          </span>
+                        </span>
+                      )}
+
+                      {/* ── VER EN GITHUB ── */}
+                      {p.repoLink ? (
+                        <a
+                          href={p.repoLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 font-syne font-bold text-xs tracking-widest
+                            rounded-full px-5 py-2.5 border transition-all duration-300
+                            hover:scale-105 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current"
+                          style={{
+                            borderColor: `${accentHex}55`,
+                            color: accentHex,
+                          }}
+                        >
+                          <FaGithub />
+                          VER EN GITHUB
+                        </a>
+                      ) : (
+                        <span className="group relative flex items-center justify-center">
+                          <span
+                            className="inline-flex items-center gap-2 font-syne font-bold text-xs tracking-widest
+                              rounded-full px-5 py-2.5 border opacity-35 cursor-not-allowed select-none"
+                            style={{
+                              borderColor: `${accentHex}22`,
+                              color: accentHex,
+                            }}
+                            aria-label="Sin acceso al repositorio por motivos laborales"
+                          >
+                            <FaGithub />
+                            VER EN GITHUB
+                          </span>
+                          {/* CSS-only Tooltip */}
+                          <span className="absolute bottom-[130%] left-1/2 -translate-x-1/2 w-max px-3 py-1.5 bg-[#141414] text-white/90 text-[11px] font-sans rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.5)] z-50 pointer-events-none transform group-hover:-translate-y-1">
+                            Sin acceso al repositorio por motivos laborales
+                            {/* Flecha del tooltip */}
+                            <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#141414]"></span>
+                          </span>
+                        </span>
+                      )}
+                    </div>
                     <DialogClose asChild>
                       <button
                         className={`font-syne font-bold text-xs tracking-widest ${p.accentClass}
@@ -642,7 +679,7 @@ function ProjectCard({ p, index }) {
                           hover:opacity-100 transition-opacity duration-200
                           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current rounded px-2 py-1`}
                       >
-                        ← CLOSE
+                        ← CERRAR
                       </button>
                     </DialogClose>
                   </div>
@@ -652,7 +689,6 @@ function ProjectCard({ p, index }) {
           </Dialog>
         </div>
       </div>
-
     </>
   );
 }

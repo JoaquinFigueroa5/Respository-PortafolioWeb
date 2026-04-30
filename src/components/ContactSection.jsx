@@ -1,29 +1,109 @@
 import { useGSAP, gsap } from "@/lib/gsap";
 import { useRef, useState } from "react";
+import { REDES } from "@/data/RedesData";
+import { HiOutlineMail } from "react-icons/hi";
+import { HiCheck }       from "react-icons/hi2";
+import { FaHeart } from "react-icons/fa";
+
+function CopyEmailButton({ email = "figueroaalvarez594@gmail.com" }) {
+  const [copied, setCopied]   = useState(false);
+  const [pending, setPending] = useState(false);   // bloquea doble-click
+  const btnRef   = useRef(null);
+  const labelRef = useRef(null);
+
+  const handleCopy = () => {
+    if (pending) return;
+    setPending(true);
+    navigator.clipboard?.writeText(email);
+
+    const btn   = btnRef.current;
+    const label = labelRef.current;
+
+     const tl = gsap.timeline({
+      onComplete: () => {
+        setCopied(true);
+
+        gsap.fromTo(
+          label,
+          { autoAlpha: 0, y: 10, scale: 0.85 },
+          { autoAlpha: 1, y: 0, duration: 0.38, ease: "back.out(2)" },
+        );
+
+        gsap.fromTo(
+          btn,
+          { boxShadow: "0 0 0 0px rgba(52,211,153,0.55)" },
+          { boxShadow: "0 0 0 14px rgba(52,211,153,0)",
+            duration: 0.7, ease: "power2.out" },
+        );
+
+        setTimeout(() => {
+          gsap.to(label, {
+            autoAlpha: 0, y: -10, duration: 0.28, ease: "power2.in",
+            onComplete: () => {
+              setCopied(false);
+              setPending(false);
+              gsap.fromTo(
+                label,
+                { autoAlpha: 0, y: 10, scale: 0.85 },
+                { autoAlpha: 1, y: 0, duration: 0.38, ease: "back.out(2)" },
+              );
+            },
+          });
+        }, 2200);
+      },
+    });
+
+    tl.to(label, { autoAlpha: 0, y: -10, duration: 0.28, ease: "power2.in" });
+  };
+
+  return (
+    <button
+      ref={btnRef}
+      onClick={handleCopy}
+      data-hover
+      className="relative overflow-hidden font-syne font-bold text-sm px-9 py-3.5 rounded-full
+        tracking-wide border-0 cursor-pointer will-change-transform
+        transition-colors duration-300"
+      style={{
+        background: copied ? "#04040c" : "#34d399",
+        color: copied ? "#ffffff" : "#04040c",
+        border: copied ? "0.5px solid rgb(92, 92, 97, 0.60)" : "1px solid transparent",
+        minWidth: 210,
+      width: 210,
+      whiteSpace: "nowrap",
+      }}
+    >
+      <span
+        className="absolute inset-0 rounded-full pointer-events-none transition-colors duration-400"
+        style={{ background: copied ? "#04040c" : "#34d399" }}
+        aria-hidden
+      />
+
+      <span
+        ref={labelRef}
+        className="relative flex items-center justify-center gap-2"
+      >
+        {copied
+          ? <><HiCheck size={16} /> Copiado!</>
+          : <><HiOutlineMail size={16} /> Copiar Correo</>
+        }
+      </span>
+    </button>
+  );
+}
 
 function ContactSection() {
   const sectionRef = useRef(null);
-  const [copied, setCopied] = useState(false);
 
   useGSAP(
     () => {
       gsap.from(".ct-inner > *", {
-        autoAlpha: 0,
-        y: 44,
-        stagger: 0.11,
-        duration: 0.9,
-        ease: "power3.out",
+        autoAlpha: 0, y: 44, stagger: 0.11, duration: 0.9, ease: "power3.out",
         scrollTrigger: { trigger: ".ct-inner", start: "top 78%" },
       });
     },
     { scope: sectionRef },
   );
-
-  const copyEmail = () => {
-    navigator.clipboard?.writeText("alex@example.dev");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2200);
-  };
 
   return (
     <section
@@ -33,20 +113,17 @@ function ContactSection() {
     >
       <div className="ct-inner max-w-3xl mx-auto text-center">
         <p className="font-mono text-xs tracking-[0.22em] uppercase text-emerald-400 mb-6">
-          Get In Touch
+          Ponte en contacto
         </p>
 
         <h2
           className="font-syne font-black leading-[0.95] tracking-tight text-white mb-6"
           style={{ fontSize: "clamp(2.8rem,7vw,5.5rem)" }}
         >
-          Let's build
+          Hagamos
           <br />
-          <span
-            className="text-transparent"
-            style={{ WebkitTextStroke: "1px rgba(255,255,255,0.2)" }}
-          >
-            something great.
+          <span className="text-transparent" style={{ WebkitTextStroke: "1px rgba(255,255,255,0.2)" }}>
+            algo Increible
           </span>
         </h2>
 
@@ -54,43 +131,38 @@ function ContactSection() {
           className="font-sans text-white/40 leading-relaxed max-w-sm mx-auto mb-14"
           style={{ fontSize: "clamp(0.95rem,1.3vw,1.05rem)" }}
         >
-          Have a project in mind or just want to chat? My inbox is always open.
+          ¿Tienes alguna idea de proyecto o simplemente quieres charlar? Mi bandeja de entrada siempre está abierta.
         </p>
 
         <div className="flex gap-4 justify-center flex-wrap mb-16">
-          <button
-            onClick={copyEmail}
-            data-hover
-            className="font-syne font-bold text-sm text-[#04040c] bg-emerald-400 hover:bg-emerald-300 transition-colors duration-200 px-9 py-3.5 rounded-full tracking-wide border-0 cursor-pointer"
-          >
-            {copied ? "✓ Copied!" : "Copy Email"}
-          </button>
+          <CopyEmailButton />
+
           <a
-            href="mailto:alex@example.dev"
-            className="font-syne font-bold text-sm text-white border border-white/15 hover:border-white/35 transition-colors duration-200 px-9 py-3.5 rounded-full tracking-wide"
+            href="https://wa.me/50258694127?text=Hola%20Joaqu%C3%ADn%2C%20quisiera%20contactarte%20para%20construir%20algo%20especial:D"
+            className="font-syne font-bold text-sm text-white border border-white/15
+              hover:border-white/35 transition-colors duration-200 px-9 py-3.5 rounded-full tracking-wide"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Send Message
+            Enviar Mensaje
           </a>
         </div>
 
         <div className="w-full h-px bg-white/6 mb-10" />
 
         <div className="flex justify-between items-center flex-wrap gap-4">
-          <span className="font-syne font-black text-lg text-white/28">
-            <span className="text-emerald-400">{"<"}</span>dev
+          <span className="font-syne font-black text-lg text-white">
+            <span className="text-emerald-400">{"<"}</span>Joaki
             <span className="text-emerald-400">{"/>"}</span>
           </span>
-          <p className="font-mono text-xs tracking-widest text-white/20">
-            © {new Date().getFullYear()} Joaquín Figueroa · Crafted with care
+          <p className="font-mono text-xs tracking-widest text-white/20 flex items-center gap-2">
+            © {new Date().getFullYear()} Joaquín Figueroa · Hecho con<FaHeart className="text-red-500 animate-bounce" />
           </p>
           <div className="flex gap-5">
-            {["GitHub", "LinkedIn", "Twitter"].map((s) => (
-              <a
-                key={s}
-                href="#"
-                className="font-mono text-xs tracking-wide text-white/28 hover:text-white/55 transition-colors duration-200"
-              >
-                {s}
+            {REDES.map(s => (
+              <a key={s.id} href={s.link}
+                className="font-mono text-xs tracking-wide text-white/28 hover:text-white/55 transition-colors duration-200">
+                {s.title}
               </a>
             ))}
           </div>
