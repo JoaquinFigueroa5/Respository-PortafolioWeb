@@ -29,7 +29,7 @@ html {
   background: #04040c;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(52, 211, 153, 0.35);
+  background: rgba(124, 106, 236, 0.527);
   border-radius: 9999px;
 }
 section {
@@ -162,11 +162,11 @@ section {
 }
 
 ::selection {
-  background-color: rgba(52, 211, 153, 0.555);
+  background-color: rgba(124, 106, 236, 0.555);
   color: rgba(0, 0, 0, 0.657);
 }
 
 ::-moz-selection {
-  background-color: rgba(52, 211, 153, 0.555);
+  background-color: rgba(124, 106, 236, 0.555);
   color: rgba(0, 0, 0, 0.657);
 }

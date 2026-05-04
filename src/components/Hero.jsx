@@ -1,5 +1,6 @@
 import { useGSAP, gsap } from "@/lib/gsap";
 import { useRef } from "react";
+import { scrollToHash } from "@/utils/scrollToHash";
 
 function Hero() {
   const containerRef = useRef(null);
@@ -136,13 +137,21 @@ function Hero() {
 
             <div className="flex gap-3 flex-wrap">
               <a
-                href="#proyectos"
+                href="#work"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToHash("#work");
+                }}
                 className="h-cta font-syne font-bold text-xs text-[#04040c] bg-[#7c6aec] hover:bg-[#8f7ff0] transition-colors duration-200 px-6 py-2.5 rounded-full tracking-wide"
               >
                 Ver trabajo ↓
               </a>
               <a
-                href="#contacto"
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToHash("#contact");
+                }}
                 className="h-cta font-syne font-bold text-xs text-white border border-white/20 hover:border-white/40 transition-colors duration-200 px-6 py-2.5 rounded-full tracking-wide"
               >
                 Contactar

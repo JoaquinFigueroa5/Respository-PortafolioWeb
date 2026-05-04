@@ -31,8 +31,8 @@ function CopyEmailButton({ email = "figueroaalvarez594@gmail.com" }) {
 
         gsap.fromTo(
           btn,
-          { boxShadow: "0 0 0 0px rgba(52,211,153,0.55)" },
-          { boxShadow: "0 0 0 14px rgba(52,211,153,0)",
+          { boxShadow: "0 0 0 0px rgba(124, 106, 236, 0.55)" },
+          { boxShadow: "0 0 0 14px rgba(124, 106, 236, 0)",
             duration: 0.7, ease: "power2.out" },
         );
 
@@ -65,7 +65,7 @@ function CopyEmailButton({ email = "figueroaalvarez594@gmail.com" }) {
         tracking-wide border-0 cursor-pointer will-change-transform
         transition-colors duration-300"
       style={{
-        background: copied ? "#04040c" : "#5346ddff",
+        background: copied ? "#04040c" : "#7c6aec",
         color: copied ? "#ffffff" : "#04040c",
         border: copied ? "0.5px solid rgb(92, 92, 97, 0.60)" : "1px solid transparent",
         minWidth: 210,
@@ -75,7 +75,7 @@ function CopyEmailButton({ email = "figueroaalvarez594@gmail.com" }) {
     >
       <span
         className="absolute inset-0 rounded-full pointer-events-none transition-colors duration-400"
-        style={{ background: copied ? "#04040c" : "#5346ddff" }}
+        style={{ background: copied ? "#04040c" : "#7c6aec" }}
         aria-hidden
       />
 
@@ -112,7 +112,7 @@ function ContactSection() {
       className="px-10 py-32 border-t border-white/5"
     >
       <div className="ct-inner max-w-3xl mx-auto text-center">
-        <p className="font-mono text-xs tracking-[0.22em] uppercase text-[#5346ddff] mb-6">
+        <p className="font-mono text-xs tracking-[0.22em] uppercase text-[#7c6aec] mb-6">
           Ponte en contacto
         </p>
 

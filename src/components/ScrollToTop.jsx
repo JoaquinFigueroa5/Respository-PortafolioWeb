@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { useGSAP, gsap } from "@/lib/gsap";
 import { HiArrowUp } from "react-icons/hi2";
 
-/* ── Progress Ring SVG ─────────────────────────────── */
 function ProgressRing({ size = 52, stroke = 2.5 }) {
   const circleRef = useRef(null);
   const r    = (size - stroke * 2) / 2;
@@ -25,16 +24,14 @@ function ProgressRing({ size = 52, stroke = 2.5 }) {
       className="absolute inset-0 -rotate-90"
       aria-hidden
     >
-      {/* track */}
       <circle
         cx={size / 2} cy={size / 2} r={r}
         fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth={stroke}
       />
-      {/* animated fill — gradient via linearGradient trick */}
       <defs>
         <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%"   stopColor="#34d399" />
-          <stop offset="100%" stopColor="#a78bfa" />
+          <stop offset="0%"   stopColor="#7c6aec" />
+          <stop offset="100%" stopColor="black" />
         </linearGradient>
       </defs>
       <circle
@@ -52,21 +49,18 @@ function ProgressRing({ size = 52, stroke = 2.5 }) {
   );
 }
 
-/* ── Main component ────────────────────────────────── */
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
   const btnRef  = useRef(null);
   const iconRef = useRef(null);
   const glowRef = useRef(null);
 
-  /* show / hide */
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 400);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* entrance / exit */
   useEffect(() => {
     const btn = btnRef.current;
     if (visible) {
@@ -83,7 +77,6 @@ function ScrollToTop() {
     }
   }, [visible]);
 
-  /* hover — glow pulse */
   const onEnter = () => {
     gsap.to(glowRef.current, { autoAlpha: 1, scale: 1.15, duration: 0.4, ease: "power2.out" });
     gsap.to(iconRef.current, { y: -3, duration: 0.3, ease: "power2.out" });
@@ -93,20 +86,17 @@ function ScrollToTop() {
     gsap.to(iconRef.current, { y:  0, duration: 0.3, ease: "power2.out" });
   };
 
-  /* click */
   const handleClick = () => {
-    /* icon bounce */
     gsap.fromTo(iconRef.current,
       { y: 0 },
       { y: -6, duration: 0.2, ease: "power2.out", yoyo: true, repeat: 1 },
     );
-    /* ripple circular */
     const ripple = document.createElement("span");
     Object.assign(ripple.style, {
       position: "absolute",
       inset: "0",
       borderRadius: "9999px",
-      border: "2px solid rgba(52,211,153,0.7)",
+      border: "2px solid rgba(124,106,234,0.7)",
       pointerEvents: "none",
     });
     btnRef.current.appendChild(ripple);
@@ -124,7 +114,6 @@ function ScrollToTop() {
       className="fixed bottom-8 right-8 z-50 will-change-transform"
       style={{ opacity: 0 }}
     >
-      {/* ambient glow behind button */}
       <div
         ref={glowRef}
         className="absolute inset-0 rounded-full pointer-events-none opacity-0 will-change-transform"
@@ -135,7 +124,6 @@ function ScrollToTop() {
         }}
       />
 
-      {/* button */}
       <button
         onClick={handleClick}
         onMouseEnter={onEnter}
@@ -145,7 +133,6 @@ function ScrollToTop() {
         className="relative flex items-center justify-center cursor-pointer border-0 p-0 bg-transparent"
         style={{ width: 52, height: 52 }}
       >
-        {/* glassmorphism base */}
         <span
           className="absolute inset-0 rounded-full"
           style={{
@@ -156,15 +143,13 @@ function ScrollToTop() {
           }}
         />
 
-        {/* progress ring */}
         <ProgressRing size={52} stroke={2.5} />
 
-        {/* icon */}
         <span
           ref={iconRef}
           className="relative flex items-center justify-center will-change-transform"
         >
-          <HiArrowUp size={16} color="#34d399" />
+          <HiArrowUp size={16} color="#7c6aec" />
         </span>
       </button>
     </div>

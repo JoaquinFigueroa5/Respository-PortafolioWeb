@@ -32,7 +32,7 @@ function Cursor() {
       hoveredEls.current.add(el);
       gsap.to(ring, {
         scale: 1.25,
-        borderColor: "#34d399",
+        borderColor: "#7c6aec",
         duration: 0.25,
       });
     };
@@ -88,7 +88,7 @@ function Cursor() {
       />
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-emerald-400 pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2 will-change-transform"
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-[#7c6aec] pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2 will-change-transform"
       />
     </>
   );

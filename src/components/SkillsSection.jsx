@@ -143,7 +143,7 @@ function SkillsSection() {
       <div className="max-w-6xl mx-auto relative">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-14">
           <div>
-            <p className="sk-hdr-el font-mono text-xs tracking-[0.22em] uppercase text-violet-400 mb-3">
+            <p className="sk-hdr-el font-mono text-xs tracking-[0.22em] uppercase text-[#7c6aec] mb-3">
               Experiencia
             </p>
             <h2

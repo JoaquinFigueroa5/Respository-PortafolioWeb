@@ -25,7 +25,7 @@ function WorkSection() {
       <div className="max-w-6xl mx-auto">
         <div className="wk-hdr flex justify-between items-end mb-16 flex-wrap gap-4">
           <div>
-            <p className="font-mono text-xs tracking-[0.2em] uppercase text-purple-500 mb-3">
+            <p className="font-mono text-xs tracking-[0.2em] uppercase text-[#7c6aec] mb-3">
               Si lo imaginas, lo puedes programar - Alejandro Taboada
             </p>
             <h2

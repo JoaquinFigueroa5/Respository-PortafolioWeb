@@ -37,7 +37,7 @@ function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="nav-progress absolute bottom-0 left-0 h-px bg-linear-to-r from-emerald-400 to-violet-500 will-change-[width]"
+      <div className="nav-progress absolute bottom-0 left-0 h-px bg-linear-to-r from-black to-violet-500 will-change-[width]"
         ref={progressRef}
         style={{ width: "0%" }}
       />
