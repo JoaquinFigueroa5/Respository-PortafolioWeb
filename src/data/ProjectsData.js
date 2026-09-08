@@ -170,57 +170,60 @@ export const PROJECTS = [
   },
   {
     id: 3,
-    year: "2023",
-    title: "Flux Commerce",
-    category: "E-Commerce · Web App",
-    desc: "High-performance storefront with edge rendering, 98 Lighthouse score and sub-50ms TTFB globally.",
+    year: "2026",
+    title: "Sistema RAG",
+    category: "AI · Machine Learning",
+    desc: "Sistema RAG para la recoleccion y recopilacion de informacion proviniente de una base de datos SQL.",
     tags: [
-      "Next.js",
-      "Vercel Edge",
-      "Stripe",
-      "Sanity"
+      "PHP",
+      "MariaDB",
+      "Docker",
+      "Ollama"
     ],
     accentClass: "text-orange-400",
     borderClass: "border-orange-500/20",
     bgClass: "bg-[#0f0700]",
     barClass: "from-orange-400 to-red-400",
     glowColor: "rgba(251,146,60,0.1)",
-    detailedDesc: "Flux Commerce is a high-performance e-commerce storefront built for scale. Using Next.js with Vercel Edge functions, we achieved a 98 Lighthouse score and sub-50ms TTFB globally.",
+    detailedDesc: "Sistema RAG alimentado con un LLM ya sea via API o local con Ollama para la recoleccion, recopilacion y analisis de datos desde la base de datos enriquecida con los embeddings generados de la informacion raiz.",
     metrics: [
-      "98 Lighthouse score",
-      "Sub-50ms TTFB globally",
-      "3x increase in conversion rate"
+      "Recoleccion eficiente de data.",
+      "Economia de Tokens del LLM.",
+      "Velocidad y precision mejorada"
     ],
-    challenge: "Legacy e-commerce platform was slow, with TTFB over 2 seconds. Poor mobile experience was hurting conversion rates significantly.",
-    solution: "Moved to Next.js with Vercel Edge for global distribution. Implemented Sanity CMS for content and Stripe for payments. Used dynamic rendering with stale-while-revalidate for optimal performance.",
+    challenge: "Implementar una solucion eficiente para recopilar informacion masiva de una base de datos ya que no habia ninguna manera eficiente de hacerlo.",
+    solution: "Un sistema con datos embebidos que recopila y sigue la ruta de los datos para poder consultarla de una manera rapida mediante la intervencion de un LLM.",
     liveLink: "",
     repoLink: ""
   },
   {
     id: 4,
-    year: "2023",
-    title: "Prism Analytics",
-    category: "Dashboard · Data Viz",
-    desc: "Interactive analytics platform processing 1M+ events/day with a custom WebGL chart engine.",
+    year: "2026",
+    title: "CMS",
+    category: "Contenidos · Manejo de datos",
+    desc: "Un CMS propio para una empresa privada que le ayuda a manejar de mejor forma los contenidos dinamicos.",
     tags: [
-      "Vue 3",
-      "D3.js",
-      "WebGL",
-      "ClickHouse"
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "PHP",
+      "Docker",
+      "MariaDB",
+      "Redis"
     ],
     accentClass: "text-amber-400",
     borderClass: "border-amber-500/20",
     bgClass: "bg-[#0f0d00]",
     barClass: "from-amber-400 to-yellow-300",
     glowColor: "rgba(251,191,36,0.1)",
-    detailedDesc: "Prism Analytics processes over 1 million events per day, providing real-time insights through an interactive dashboard. Built a custom WebGL chart engine from scratch to handle large datasets with smooth 60fps performance.",
+    detailedDesc: "Un sistema propio de una empresa privada que automatiza y eficientiza el manejo de contenidos dinamicos para las demas instituciones que tiene por afiliadas dicha empresa.",
     metrics: [
-      "1M+ events/day processing",
-      "60fps with large datasets",
-      "Real-time insights < 500ms"
+      "Datos cacheados en Redis",
+      "Sin necesidad de tocar codigo",
+      "Facil manejo para usuarios no tecnicos"
     ],
-    challenge: "Processing and visualizing millions of data points in real-time while maintaining smooth performance was extremely challenging. Existing charting libraries couldn't handle the data volume.",
-    solution: "Built a custom WebGL chart engine using Vue 3 and D3.js for data processing. Integrated ClickHouse for efficient time-series queries. Implemented progressive rendering for smooth interactions.",
+    challenge: "Cualquier cambio a las diferentes paginas pertenecientes a la empresa implicaba modificar el codigo fuente haciendo que cualquier cambio tenia que recurrir al departamento de desarrollo.",
+    solution: "Un sistema que eficientiza este proceso para que no tenga que pasar directamente por el departamento de desarrollo si no que con un usuario creado especificamente para ese departamento podia editarlo y subirlo sin pasar por una lista de espero excesiva.",
     liveLink: "",
     repoLink: ""
   },

@@ -18,10 +18,12 @@ import { SiSpringboot,
   SiShadcnui, 
   SiChakraui, 
   SiFigma,
-  SiExpress
+  SiExpress,
+  SiMariadbfoundation
 } from "react-icons/si";
 import { TbBrandReactNative } from "react-icons/tb";
 import { DiMsqlServer } from "react-icons/di";
+import { RiNextjsFill } from "react-icons/ri";
 
 export const SKILLS = [
   { label: "React", level: 91 },
@@ -45,11 +47,12 @@ export const SKILLS = [
   { label: "ChakraUI", level: 89 }, 
   { label: "UI/UX Design", level: 85 },
   { label: "Python", level: 40 },
+  { label: "Next.js", level: 80 },
+  { label: "MariaDB", level: 90 }
 ];
 
 export const TOOLS = [
   "VS Code",
-  "Antigravity",
   "Cursor",
   "Opencode",
   "Ollama",
@@ -91,6 +94,8 @@ export const ICON_MAP = {
   "ChakraUI":       { icon: SiChakraui,           color: "#319795" },
   "UI/UX Design":   { icon: SiFigma,              color: "#f24e1e" },
   "Python":         { icon: FaPython,             color: "#3776ab" },
+  "Next.js":        { icon: RiNextjsFill,         color: "#ffffff" },
+  "MariaDB":        { icon: SiMariadbfoundation,  color: "#C0765A"}
 };
 
 export const GROUPS = [
@@ -98,7 +103,7 @@ export const GROUPS = [
     key: "frontend",
     label: "Frontend",
     accent: "#34d399",
-    skills: ["React", "React Native", "HTML", "CSS", "TailwindCSS", "Shadcn/ui", "ChakraUI", "TypeScript", "UI/UX Design"],
+    skills: ["React", "React Native", "HTML", "CSS", "TailwindCSS", "Shadcn/ui", "ChakraUI", "TypeScript", "UI/UX Design", "Next.js"],
   },
   {
     key: "backend",
@@ -110,6 +115,6 @@ export const GROUPS = [
     key: "data",
     label: "Data & Infra",
     accent: "#60a5fa",
-    skills: ["MySQL", "PostgreSQL", "SQL Server", "MongoDB", "Docker", "Git"],
+    skills: ["MySQL", "PostgreSQL", "SQL Server", "MongoDB", "Docker", "Git", "MariaDB"],
   },
 ];

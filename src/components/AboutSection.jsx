@@ -49,7 +49,7 @@ function AboutSection() {
             className="font-syne font-black leading-tight tracking-tight text-white mb-6"
             style={{ fontSize: "clamp(2rem,4vw,3rem)" }}
           >
-            Construyo cosas
+            Construyo soluciones
             <br />
             para la web.
           </h2>
@@ -60,7 +60,7 @@ function AboutSection() {
           <p className="font-sans text-sm text-white/48 leading-relaxed mb-10">
             Actualmente estoy cursando mis estudios en Ingenieria en Sistemas en la Universidad Mariano Galvez, en donde he podido desarrollar mis habilidades en programacion y desarrollo de software.
             Me gusta aprender cosas nuevas y desafiarme a mi mismo para poder mejorar cada dia.
-            A pesar de que estoy estudiando y voy en mi primer año de universidad, he trabajado profesionalmente como desarrollador web para seguir puliendo aun mas mis conocimientos.
+            A pesar de que estoy estudiando y voy en mi primer año de universidad pero mis estudios como desarrollador de software han superado los 4 años ya que me gradue como Tecnico en Informatica de Kinal, he trabajado profesionalmente como desarrollador web aproximadamente 1 año para seguir puliendo aun mas mis conocimientos.
           </p>
           <div className="flex flex-wrap gap-4 pt-2">
             {REDES.map((red) => (
