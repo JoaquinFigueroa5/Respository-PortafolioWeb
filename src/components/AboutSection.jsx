@@ -31,10 +31,10 @@ function AboutSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="px-10 py-32 border-t border-white/5"
+      className="px-6 md:px-10 py-24 md:py-32 border-t border-white/5"
     >
       <div
-        className="max-w-6xl mx-auto grid gap-20 items-center"
+        className="max-w-6xl mx-auto grid gap-12 md:gap-20 items-center"
         style={{
           gridTemplateColumns:
             "repeat(auto-fit, minmax(min(100%, 420px), 1fr))",
@@ -87,8 +87,7 @@ function AboutSection() {
             style={{ aspectRatio: "4/5" }}
           >
             <img
-              src="/noir.jpg"
-              // src="/miles&gwen.jpg"
+              src="/Joaki.jpeg"
               alt="Joaquín Figueroa"
               className="w-full h-full object-cover object-center"
             />
@@ -97,7 +96,7 @@ function AboutSection() {
           </div>
 
           {/* floating badges */}
-          <div className="absolute top-6 -right-5 bg-emerald-400 rounded-xl px-4 py-3">
+          <div className="absolute top-6 -right-3 sm:-right-5 bg-emerald-400 rounded-xl px-4 py-3 shadow-lg">
             <p className="font-syne font-black text-2xl text-[#04040c] leading-none">
               1+
             </p>
@@ -105,7 +104,7 @@ function AboutSection() {
               Año
             </p>
           </div>
-          <div className="absolute bottom-6 -left-5 bg-[#0d0a1e] border border-violet-500/30 rounded-xl px-4 py-3">
+          <div className="absolute bottom-6 -left-3 sm:-left-5 bg-[#0d0a1e] border border-violet-500/30 rounded-xl px-4 py-3 shadow-lg">
             <p className="font-syne font-black text-2xl text-violet-400 leading-none">
               15+
             </p>

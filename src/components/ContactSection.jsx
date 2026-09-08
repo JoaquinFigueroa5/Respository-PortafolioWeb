@@ -109,7 +109,7 @@ function ContactSection() {
     <section
       ref={sectionRef}
       id="contact"
-      className="px-10 py-32 border-t border-white/5"
+      className="px-6 md:px-10 py-24 md:py-32 border-t border-white/5"
     >
       <div className="ct-inner max-w-3xl mx-auto text-center">
         <p className="font-mono text-xs tracking-[0.22em] uppercase text-[#7c6aec] mb-6">
@@ -150,7 +150,7 @@ function ContactSection() {
 
         <div className="w-full h-px bg-white/6 mb-10" />
 
-        <div className="flex justify-between items-center flex-wrap gap-4">
+        <div className="flex flex-col sm:flex-row justify-center sm:justify-between items-center flex-wrap gap-4">
           <span className="font-syne font-black text-lg text-white">
             <span className="text-[#5346ddff]">{"<"}</span>Joaki
             <span className="text-[#5346ddff]">{`/>`}</span>

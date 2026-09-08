@@ -1,5 +1,5 @@
 import { useGSAP, gsap } from "@/lib/gsap";
-import { useRef, useState, useCallback, useEffect, memo } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import {
   Dialog,
   DialogTrigger,
@@ -265,6 +265,7 @@ function ProjectCard({ p, index }) {
   const glowRef = useRef(null);
   const triggerRef = useRef(null);
   const dialogContentRef = useRef(null);
+  const dialogInnerRef = useRef(null);
   const cardRectRef = useRef(null);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -291,10 +292,20 @@ function ProjectCard({ p, index }) {
 
   const setContentRef = useCallback((node) => {
     dialogContentRef.current = node;
-    if (!node || prefersReducedMotion) return;
+    if (!node) return;
     const card = cardRectRef.current;
-    if (!card) return;
     const modal = getModalRect();
+    if (!card || prefersReducedMotion) {
+      gsap.set(node, {
+        top: modal.top,
+        left: modal.left,
+        width: modal.width,
+        height: modal.height,
+        borderRadius: "0.75rem",
+        opacity: 1,
+      });
+      return;
+    }
 
     gsap.set(node, {
       top: card.top,
@@ -304,15 +315,27 @@ function ProjectCard({ p, index }) {
       borderRadius: "1rem",
       opacity: 1,
     });
-    gsap.to(node, {
+
+    const inner = dialogInnerRef.current;
+
+    const tl = gsap.timeline();
+    tl.to(node, {
       top: modal.top,
       left: modal.left,
       width: modal.width,
       height: modal.height,
       borderRadius: "0.75rem",
-      duration: 0.55,
+      duration: 0.6,
       ease: "power3.inOut",
     });
+    if (inner) {
+      tl.fromTo(
+        inner,
+        { autoAlpha: 0, y: 32 },
+        { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" },
+        "-=0.32",
+      );
+    }
   }, []);
 
   const handleClose = useCallback(() => {
@@ -326,7 +349,26 @@ function ProjectCard({ p, index }) {
       setIsOpen(false);
       return;
     }
-    gsap.to(dialogContentRef.current, {
+    const overlay = document.querySelector('[data-slot="dialog-overlay"]');
+    const inner = dialogInnerRef.current;
+
+    const tl = gsap.timeline({ onComplete: () => setIsOpen(false) });
+    if (inner) {
+      tl.to(inner, {
+        autoAlpha: 0,
+        y: -18,
+        duration: 0.2,
+        ease: "power2.in",
+      }, 0);
+    }
+    if (overlay) {
+      tl.to(overlay, {
+        opacity: 0,
+        duration: 0.35,
+        ease: "power2.in",
+      }, 0);
+    }
+    tl.to(dialogContentRef.current, {
       top: card.top,
       left: card.left,
       width: card.width,
@@ -334,8 +376,12 @@ function ProjectCard({ p, index }) {
       borderRadius: "1rem",
       duration: 0.4,
       ease: "power2.inOut",
-      onComplete: () => setIsOpen(false),
-    });
+    }, 0.06);
+    tl.to(dialogContentRef.current, {
+      opacity: 0,
+      duration: 0.3,
+      ease: "power1.inOut",
+    }, 0.35);
   }, []);
 
   const onOpenChange = useCallback(
@@ -385,7 +431,7 @@ function ProjectCard({ p, index }) {
         onMouseEnter={onEnter}
         onMouseLeave={onLeave}
         data-hover
-        className={`relative ${p.bgClass} border ${p.borderClass} rounded-2xl p-10 overflow-hidden cursor-pointer will-change-transform`}
+        className={`relative ${p.bgClass} border ${p.borderClass} rounded-2xl p-6 sm:p-8 lg:p-10 overflow-hidden cursor-pointer will-change-transform`}
       >
         <div
           ref={glowRef}
@@ -453,10 +499,10 @@ function ProjectCard({ p, index }) {
               positionless
               showCloseButton={false}
               onOpenAutoFocus={(e) => e.preventDefault()}
-              className={`bg-[#0a0a0a] border ${p.borderClass} text-sm overflow-hidden`}
+              className={`bg-[#0a0a0a]/92 backdrop-blur-xl border ${p.borderClass} text-sm overflow-hidden`}
             >
               <ScrollArea className="h-full w-full">
-                <div className="p-8">
+                <div ref={dialogInnerRef} className="p-5 sm:p-8">
                   <DialogHeader>
                     <div className="flex items-center gap-3 mb-2">
                       <span
@@ -474,7 +520,7 @@ function ProjectCard({ p, index }) {
                         {p.category}
                       </span>
                     </div>
-                    <DialogTitle className="font-syne text-3xl font-black text-white tracking-tight leading-none">
+                    <DialogTitle className="font-syne text-2xl sm:text-3xl font-black text-white tracking-tight leading-none">
                       {p.title}
                     </DialogTitle>
                   </DialogHeader>

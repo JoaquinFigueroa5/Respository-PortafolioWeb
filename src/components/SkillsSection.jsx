@@ -10,14 +10,47 @@ function getTier(level) {
   return                   { label: "Aprendiendo",  accent: "#f87171" };
 }
 
+const prefersReducedMotion =
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 function SkillPill({ label, level }) {
   const { label: tier, accent } = getTier(level);
   const { icon: Icon, color }   = ICON_MAP[label] ?? { icon: null, color: "#ffffff" };
-  const circ = 2 * Math.PI * 10;
-  const arc  = (level / 100) * circ;
+  const pillRef = useRef(null);
+  const ringRef = useRef(null);
+  const numRef = useRef(null);
+
+  const RADIUS = 16;
+  const circ   = 2 * Math.PI * RADIUS;
+  const arc    = (level / 100) * circ;
+
+  useGSAP(() => {
+    if (prefersReducedMotion) return;
+    const counter = { v: 0 };
+    const tl = gsap.timeline({
+      delay: 0.2,
+      scrollTrigger: { trigger: pillRef.current, start: "top 92%", once: true },
+    });
+    tl.fromTo(
+      ringRef.current,
+      { strokeDasharray: `0 ${circ}` },
+      { strokeDasharray: `${arc} ${circ}`, duration: 1.2, ease: "power2.out" },
+      0,
+    );
+    tl.to(counter, {
+      v: level,
+      duration: 1.05,
+      ease: "power3.out",
+      onUpdate: () => {
+        if (numRef.current) numRef.current.textContent = Math.round(counter.v);
+      },
+    }, 0.05);
+  }, { scope: pillRef });
 
   return (
     <article
+      ref={pillRef}
       data-hover
       className="skill-pill group relative flex items-center gap-3 rounded-xl border border-white/8
         bg-white/3 hover:bg-white/6 px-3.5 py-2.5 transition-colors duration-250 will-change-transform overflow-hidden"
@@ -43,13 +76,15 @@ function SkillPill({ label, level }) {
         <svg width={38} height={38} className="-rotate-90" aria-hidden>
           <circle cx={19} cy={19} r={16} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth={3} />
           <circle
-            cx={19} cy={19} r={16} fill="none" stroke={accent} strokeWidth={3}
+            ref={ringRef}
+            cx={19} cy={19} r={RADIUS} fill="none" stroke={accent} strokeWidth={3}
             strokeLinecap="round"
             strokeDasharray={`${arc} ${circ}`}
             className="skill-ring-dash"
           />
         </svg>
         <span
+          ref={numRef}
           className="absolute inset-0 flex items-center justify-center font-mono leading-none"
           style={{ fontSize: "0.75rem", color: accent }}
         >
@@ -75,7 +110,7 @@ function GroupBlock({ group }) {
         <span className="font-mono text-[0.55rem] text-white/22">{groupSkills.length} skills</span>
       </div>
 
-      <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))" }}>
+      <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 190px), 1fr))" }}>
         {groupSkills.map(s => <SkillPill key={s.label} {...s} />)}
       </div>
     </div>
@@ -106,13 +141,6 @@ function SkillsSection() {
       }),
       start: "top 90%",
       once: true,
-    });
-
-    gsap.utils.toArray(".skill-ring-dash").forEach(el => {
-      gsap.from(el, {
-        strokeDasharray: "0 999", duration: 1.3, ease: "power3.out", delay: 0.25,
-        scrollTrigger: { trigger: el, start: "top 92%", once: true },
-      });
     });
 
     gsap.from(".sidebar-card", {
@@ -161,7 +189,7 @@ function SkillsSection() {
           </p>
         </div>
 
-        <div className="grid gap-8 items-start" style={{ gridTemplateColumns: "1fr minmax(0, 260px)" }}>
+        <div className="grid gap-10 lg:gap-8 items-start grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,260px)]">
           <div className="flex flex-col gap-10">
             {GROUPS.map(g => <GroupBlock key={g.key} group={g} />)}
           </div>

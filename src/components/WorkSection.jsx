@@ -21,7 +21,7 @@ function WorkSection() {
   );
 
   return (
-    <section ref={sectionRef} id="work" className="px-10 py-32">
+    <section ref={sectionRef} id="work" className="px-6 md:px-10 py-24 md:py-32">
       <div className="max-w-6xl mx-auto">
         <div className="wk-hdr flex justify-between items-end mb-16 flex-wrap gap-4">
           <div>

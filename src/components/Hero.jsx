@@ -24,7 +24,7 @@ function Hero() {
     <section
       ref={containerRef}
       id="home"
-      className="relative min-h-screen flex flex-col justify-between overflow-hidden px-10 pt-24 pb-10"
+      className="relative min-h-screen flex flex-col justify-between overflow-hidden px-6 md:px-10 pt-24 pb-10"
     >
       <div
         className="absolute inset-0 pointer-events-none"
@@ -68,7 +68,7 @@ function Hero() {
       <div className="relative flex-1 flex items-center">
         <h1
           className="h-name font-syne font-black leading-[0.88] tracking-tighter text-white w-full"
-          style={{ fontSize: "clamp(4.5rem,11vw,10rem)" }}
+          style={{ fontSize: "clamp(3.4rem,11vw,10rem)" }}
         >
           Joaquín
           <br />
@@ -85,8 +85,7 @@ function Hero() {
         <div className="h-divider w-full h-px bg-white/8 mb-7 will-change-transform" />
 
         <div
-          className="grid gap-8"
-          style={{ gridTemplateColumns: "1fr 1fr 1fr" }}
+          className="grid gap-8 grid-cols-1 md:grid-cols-3"
         >
           <div className="flex flex-col justify-between gap-4">
             <div className="h-role flex items-center gap-2">

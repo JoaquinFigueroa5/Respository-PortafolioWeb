@@ -8,6 +8,7 @@ function Cursor() {
 
   useEffect(() => {
     if (!ringRef.current || !dotRef.current) return;
+    if (!window.matchMedia("(pointer: fine)").matches) return;
 
     const ring = ringRef.current;
     const dot = dotRef.current;
@@ -78,6 +79,13 @@ function Cursor() {
       observer.disconnect();
     };
   }, []);
+
+  const finePointer =
+    typeof window === "undefined"
+      ? false
+      : window.matchMedia("(pointer: fine)").matches;
+
+  if (!finePointer) return null;
 
   return (
     <>

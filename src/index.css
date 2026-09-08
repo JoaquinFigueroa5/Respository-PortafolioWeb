@@ -15,8 +15,12 @@
 .font-sans {
   font-family: "DM Sans", sans-serif !important;
 }
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
 * {
-  cursor: none !important;
   box-sizing: border-box;
 }
 html {
